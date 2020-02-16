@@ -1,9 +1,6 @@
 import math
 import sys
 
-# print(sys.setrecursionlimit(2500))
-print(sys.getrecursionlimit())
-
 
 def merge(input_data, index_start, index_mid, index_end):
     part_list1 = []
@@ -26,8 +23,11 @@ def merge(input_data, index_start, index_mid, index_end):
         else:
             output_data.insert(value, part_list2[temp_index_j])
             temp_index_j += 1
-    print(output_data)
-    return output_data
+    for index in range(len(output_data)):
+        input_data[index_start] = output_data[index]
+        index_start += 1
+    print(input_data)
+    return input_data
 
 
 def merge_sort(input_data, index_start, index_end):
@@ -38,19 +38,10 @@ def merge_sort(input_data, index_start, index_end):
         print("merge_sort is being called with " + "starting index at: " + str(index_mid + 1) + " & ending index at: " + str(index_end))
         merge_sort(input_data, (index_mid + 1), index_end)
         print("merge is being called with " + "starting index at: " + str(index_start) + " middle index at: " + str(index_mid) + " & ending index at: " + str(index_end))
-        output_data = merge(input_data, index_start, index_mid, index_end)
-        for index in range(len(output_data)):
-            input_data[index] = output_data[index]
+        merge(input_data, index_start, index_mid, index_end)
 
 
-
-input_data = [8, 5, 9, 7, 6, 10]
+input_data = [8, 5, 3, 6, 1, 10, 9]
 index_start = 0
 index_end = len(input_data) - 1
-recursive_call = 1
 print(merge_sort(input_data, index_start, index_end))
-# index_mid = math.floor(index_end / 2)
-# print(index_mid)
-# print(index_end)
-# print(merging(input_data, index_start, index_mid, index_end))
-
