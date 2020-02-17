@@ -8,9 +8,10 @@ def partition(input_data, index_start, index_end):
             input_data[i] = input_data[index]
             input_data[index] = temp
     i += 1
-    temp = input_data[i]
-    input_data[i] = pivot
-    input_data[index_end] = temp
+    if input_data[i] > pivot:
+        temp = input_data[i]
+        input_data[i] = pivot
+        input_data[index_end] = temp
     partition_index = i
     print(input_data)
     return partition_index
@@ -26,8 +27,7 @@ def quick_sort(input_data, index_start, index_end):
         quick_sort(input_data, (partition_index+1), index_end)
     return input_data
 
-input_data = [6, 7, 9, 2, 1, 10, 5]
+input_data = [6, 7, 1, 10, 9, 12, 8]
 index_start = 0
 index_end = len(input_data) - 1
 print(quick_sort(input_data, index_start, index_end))
-
