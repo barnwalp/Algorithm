@@ -65,14 +65,14 @@ def heap_insert(input_data, key):
     return heap_increase_key(input_data, heapsize, key)
 
 
-# input_data = [4, 6, 5, 0, 8, 2, 7, 1, 3]
-# input_data = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1]
-input_data = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
-root = 0
-# print(max_heapify(input_data, root))
-print(build_max_heap(input_data))
-# print(heap_extract_max(input_data))
-# print(heap_increase_key(input_data, 7, 11))
-print(heap_insert(input_data, 8))
+# # input_data = [4, 6, 5, 0, 8, 2, 7, 1, 3]
+# # input_data = [16, 4, 10, 14, 7, 9, 3, 2, 8, 1]
+# input_data = [4, 1, 3, 2, 16, 9, 10, 14, 8, 7]
+# root = 0
+# # print(max_heapify(input_data, root))
+# print(build_max_heap(input_data))
+# # print(heap_extract_max(input_data))
+# # print(heap_increase_key(input_data, 7, 11))
+# print(heap_insert(input_data, 8))
 
 
