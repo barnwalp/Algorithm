@@ -1,7 +1,6 @@
 import math
 import sys
-
-
+1.87
 def merge(input_data, index_start, index_mid, index_end):
     part_list1 = []
     part_list2 = []
