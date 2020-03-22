@@ -15,20 +15,25 @@
 #     return output_data
 
 def counting_sort(input_data, size):
+
     # create an empty list of length "range"
     key = [0] * (size + 1)
+
     # create and empty output array
     output_data = [0] * len(input_data)
     print(output_data)
+
     # count the no of occurrence and store them in key as per the index
     for index in input_data:
         key[index] = key[index] + 1
     print(key)
+
     # modify the array key so that value at index n will be no of element that
     # are either smaller or equal to n
     for index in range(1, (size + 1)):
         key[index] += key[index - 1]
     print(key)
+
     right_index = len(input_data)-1
     print(right_index)
     for index in reversed(range(0, right_index+1)):
