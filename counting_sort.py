@@ -43,5 +43,6 @@ input_data = [2, 5, 3, 0, 2, 3, 0, 3]
 # input_data = [2, 2, 2, 0, 5, 3, 2, 5, 1, 0, 4, 5, 4]
 print("input data is " + str(input_data))
 # size is the highest value data in the array
-size = 5
+size = max(input_data)
+print(size)
 print(counting_sort(input_data, size))
