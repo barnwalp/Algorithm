@@ -1,5 +1,5 @@
 import math
-import sys
+
 
 def merge(input_data, index_start, index_mid, index_end):
     part_list1 = []
