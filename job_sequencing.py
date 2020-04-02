@@ -7,10 +7,18 @@ def job_sequencing(input_data):
 
     # sort the job_details in descending order based on profit
     input_data = sorted(input_data, key=itemgetter(1), reverse=True)
+
+    # create an array of size of max deadline
     sequenced_data = [0] * (maximum)
 
-    return 0
+    count = 0
+    profit = 0
+    for index in reversed(range(0, maximum)):
+        sequenced_data[index] = input_data[count][1]
+        count += 1
+        profit += sequenced_data[index]
 
+    return profit
 
 
 job_details = [
@@ -22,4 +30,4 @@ job_details = [
     (2, 100)
 ]
 
-print(job_sequencing(job_details))
+print("\nMaximum achievable profit for the job: " + str(job_details) + " is: " + str(job_sequencing(job_details)))
