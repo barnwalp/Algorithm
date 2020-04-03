@@ -2,32 +2,31 @@ from heapq import heappush, heappop, heapify
 import math
 
 
-def merge(input_data, index_start, index_mid, index_end):
-    part_list1 = []
-    part_list2 = []
-    for value in range(index_start, (index_mid+1)):
-        part_list1.append(input_data[value])
-    part_list1.append(float("inf"))
-    print("Part_list_1 is: " + str(part_list1))
-    for value in range((index_mid+1), (index_end+1)):
-        part_list2.append(input_data[value])
-    part_list2.append(float("inf"))
-    print("Part_list_2 is: " + str(part_list2))
+def merge(first_list, second_list):
+    # both of these will be used for for loop at the end
+    index_start = 0
+    index_end = len(first_list) + len(second_list)
+
+    # append infinity at the end of first list
+    first_list.append(float("inf"))
+    print("first list is: " + str(first_list))
+
+    # append infinity at the end of second list
+    second_list.append(float("inf"))
+    print("Second list is: " + str(second_list))
+
     temp_index_i = 0
     temp_index_j = 0
     output_data = []
-    for value in range(index_start, (index_end+1)):
-        if part_list1[temp_index_i] < part_list2[temp_index_j]:
-            output_data.insert(value, part_list1[temp_index_i])
+    for value in range(index_start, index_end):
+        if first_list[temp_index_i] < second_list[temp_index_j]:
+            output_data.insert(value, first_list[temp_index_i])
             temp_index_i += 1
         else:
-            output_data.insert(value, part_list2[temp_index_j])
+            output_data.insert(value, second_list[temp_index_j])
             temp_index_j += 1
-    for index in range(len(output_data)):
-        input_data[index_start] = output_data[index]
-        index_start += 1
-    print(input_data)
-    return input_data
+    print(output_data)
+    return output_data
 
 
 def optimal_merge(first_list, second_list, third_list, forth_list):
@@ -47,6 +46,11 @@ def optimal_merge(first_list, second_list, third_list, forth_list):
     ]
     heapify(heap)
     print("heapified lists are: " + str(heap))
+    size1, list_array1 = heappop(heap)
+    size2, list_array2 = heappop(heap)
+    list_array3 = merge(list_array1, list_array2)
+    size3 = len(list_array3)
+
 
 
 # sorted input arrays which needs to be merged
