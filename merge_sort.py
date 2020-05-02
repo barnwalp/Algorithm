@@ -32,11 +32,14 @@ def merge(input_data, index_start, index_mid, index_end):
 def merge_sort(input_data, index_start, index_end):
     if index_start < index_end:
         index_mid = math.floor((index_start + index_end) / 2)
-        print("merge_sort is being called with " + "starting index at: " + str(index_start) + " & ending index at: " + str(index_mid))
+        print("merge_sort is being called with " + "starting index at: " +
+              str(index_start) + " & ending index at: " + str(index_mid))
         merge_sort(input_data, index_start, index_mid)
-        print("merge_sort is being called with " + "starting index at: " + str(index_mid + 1) + " & ending index at: " + str(index_end))
+        print("merge_sort is being called with " + "starting index at: " +
+              str(index_mid + 1) + " & ending index at: " + str(index_end))
         merge_sort(input_data, (index_mid + 1), index_end)
-        print("merge is being called with " + "starting index at: " + str(index_start) + " middle index at: " + str(index_mid) + " & ending index at: " + str(index_end))
+        print("merge is being called with " + "starting index at: " + str(index_start) +
+              " middle index at: " + str(index_mid) + " & ending index at: " + str(index_end))
         merge(input_data, index_start, index_mid, index_end)
 
 

@@ -7,7 +7,7 @@ def greedy_knapsack(input_data, knapsack):
 
     # sorting the list based on the last column
     # of 2D array in the reverse order
-    input_data.sort(key=lambda x:x[2], reverse=True)
+    input_data.sort(key=lambda x: x[2], reverse=True)
 
     # sorted 2D list
     print(input_data)
@@ -30,9 +30,6 @@ input_data = [
     [25, 18],
     [24, 15],
     [15, 10]
-    ]
+]
 knapsack = 20
 print(greedy_knapsack(input_data, knapsack))
-
-
-

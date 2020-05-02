@@ -1,5 +1,6 @@
 import math
 
+
 def max_heapify(input_data, root):
     # since the index starts from 0, a little tweaking is
     # required to get left and right child
@@ -74,5 +75,3 @@ def heap_insert(input_data, key):
 # # print(heap_extract_max(input_data))
 # # print(heap_increase_key(input_data, 7, 11))
 # print(heap_insert(input_data, 8))
-
-

@@ -20,12 +20,16 @@ def partition(input_data, index_start, index_end):
 def quick_sort(input_data, index_start, index_end):
     if index_start < index_end:
         partition_index = partition(input_data, index_start, index_end)
-        print("partition index is found at: " + str(partition_index) + " & pivot value is: " + str(input_data[partition_index]))
-        print("quick sort is being called with starting index at: " + str(index_start) + " and ending index at: " + str(partition_index))
+        print("partition index is found at: " + str(partition_index) +
+              " & pivot value is: " + str(input_data[partition_index]))
+        print("quick sort is being called with starting index at: " +
+              str(index_start) + " and ending index at: " + str(partition_index))
         quick_sort(input_data, index_start, partition_index)
-        print("quick sort is being called with starting index at: " + str(partition_index+1) + " and ending index at: " + str(index_end))
+        print("quick sort is being called with starting index at: " +
+              str(partition_index+1) + " and ending index at: " + str(index_end))
         quick_sort(input_data, (partition_index+1), index_end)
     return input_data
+
 
 input_data = [6, 7, 1, 10, 9, 12, 8]
 index_start = 0
