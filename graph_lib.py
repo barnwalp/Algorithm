@@ -66,8 +66,11 @@ class Graph(object):
 
     def __generate_edges(self):
         edges = []
+        print('---------------------')
         for vertex, value in self.__graph_dict.items():
+            print(f'{vertex} --> {value}')
             for neighbour in value:
+                print(f'{neighbour} --> {vertex}')
                 # {} will ensure that orientation of edges
                 # does not matter
                 if {neighbour, vertex} not in edges:
@@ -140,3 +143,5 @@ if __name__ == "__main__":
     print('\nremoving edge (b, c)')
     graph.remove_edge({'b', 'c'})
     print(f'\n{graph}')
+
+    print(graph.edges())

@@ -11,6 +11,7 @@ if __name__ == "__main__":
         5: {4: 22, 6: 25, 7: 24},
         6: {1: 10, 5: 25}
     }
+
     # generating vertices
     print(g.keys())
 
@@ -18,6 +19,14 @@ if __name__ == "__main__":
     # edges = [(1, 2, 28), (1, 6, 10) .............]
     edges = []
     for key, value in g.items():
+        # print(f'{key} --> {value}')
         for edge, cost in value.items():
             if {key, edge} not in edges:
-                edges.append((key, edge, cost))
+                edges.append({key, edge})
+
+    for index, value in enumerate(edges):
+        edges[index] = list(value)
+        # edges[index][2] =
+    print(edges)
+
+    # finding the weight of the edge
