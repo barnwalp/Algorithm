@@ -11,6 +11,8 @@ if __name__ == "__main__":
         5: {4: 22, 6: 25, 7: 24},
         6: {1: 10, 5: 25}
     }
+    # getting cost of an edge
+    print(g[1][2])
 
     # generating vertices
     print(g.keys())
@@ -26,7 +28,12 @@ if __name__ == "__main__":
 
     for index, value in enumerate(edges):
         edges[index] = list(value)
-        # edges[index][2] =
+        u = edges[index][0]
+        v = edges[index][1]
+        cost = g[u][v]
+        # print(f'{u} --> {v} --> {cost} --> {edges[index]}')
+        edges[index].append(cost)
+        edges[index] = tuple(edges[index])
     print(edges)
 
     # finding the weight of the edge
