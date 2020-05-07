@@ -1,7 +1,7 @@
 from operator import itemgetter
 
 
-def prims(edges, vertices, edges_in_mst):
+def prims(g, edges, vertices, edges_in_mst):
     min_cost = 0
     near = {}
     # no_of_vertices = len(vertices)
@@ -9,8 +9,29 @@ def prims(edges, vertices, edges_in_mst):
         near[vertex] = float("inf")
     print(f'near array is: {near}')
     print(f'edges are: {edges}')
+
     min_tuple = min(edges, key=itemgetter(2))
-    print(min_tuple)
+    edges_in_mst[0] = min_tuple[:2]
+    set_of_vertices = set()
+    set_of_vertices.add(min_tuple[0])
+    set_of_vertices.add(min_tuple[1])
+    print(set_of_vertices)
+    cost = min_tuple[2]
+    min_cost += cost
+    print(f'{min_cost} - -> {edges_in_mst}')
+
+    for key, value in near.items():
+        print(f'{key} --> {value}')
+        if key in set_of_vertices:
+            near[key] = 0
+        else:
+            for key_2, value_2 in g.items():
+                for key_3, value_3 in value_2.items():
+                    if key_3 in set_of_vertices:
+                        if near[key] > value_3:
+                            near[key] = value_3
+        smallest_weight = min(near, key=itemgetter(1))
+        print(near)
 
 
 if __name__ == "__main__":
@@ -48,4 +69,4 @@ if __name__ == "__main__":
     edges_in_mst = [[None for _ in range(2)] for _ in range(no_of_vertices-1)]
     print(edges_in_mst)
 
-    prims(edges, vertices, edges_in_mst)
+    prims(g, edges, vertices, edges_in_mst)
