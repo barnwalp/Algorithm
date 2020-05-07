@@ -1,5 +1,16 @@
-def prims(edges, cost, no_of_vertices, mst):
-    pass
+from operator import itemgetter
+
+
+def prims(edges, vertices, edges_in_mst):
+    min_cost = 0
+    near = {}
+    # no_of_vertices = len(vertices)
+    for vertex in vertices:
+        near[vertex] = float("inf")
+    print(f'near array is: {near}')
+    print(f'edges are: {edges}')
+    min_tuple = min(edges, key=itemgetter(2))
+    print(min_tuple)
 
 
 if __name__ == "__main__":
@@ -11,11 +22,11 @@ if __name__ == "__main__":
         5: {4: 22, 6: 25, 7: 24},
         6: {1: 10, 5: 25}
     }
-    # getting cost of an edge
-    print(g[1][2])
 
     # generating vertices
-    print(g.keys())
+    vertices = g.keys()
+    print(f'vertices of the graph are: {vertices}')
+    no_of_vertices = len(vertices)
 
     # generating edges
     # edges = [(1, 2, 28), (1, 6, 10) .............]
@@ -25,7 +36,6 @@ if __name__ == "__main__":
         for edge, cost in value.items():
             if {key, edge} not in edges:
                 edges.append({key, edge})
-
     for index, value in enumerate(edges):
         edges[index] = list(value)
         u = edges[index][0]
@@ -34,6 +44,8 @@ if __name__ == "__main__":
         # print(f'{u} --> {v} --> {cost} --> {edges[index]}')
         edges[index].append(cost)
         edges[index] = tuple(edges[index])
-    print(edges)
 
-    # finding the weight of the edge
+    edges_in_mst = [[None for _ in range(2)] for _ in range(no_of_vertices-1)]
+    print(edges_in_mst)
+
+    prims(edges, vertices, edges_in_mst)
