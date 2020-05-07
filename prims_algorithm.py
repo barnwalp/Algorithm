@@ -3,22 +3,32 @@ from operator import itemgetter
 
 def prims(g, edges, vertices, edges_in_mst):
     min_cost = 0
+
+    # creating a dictionary with vertices as its key and distance from the
+    # selected edges as value
     near = {}
     # no_of_vertices = len(vertices)
     for vertex in vertices:
         near[vertex] = float("inf")
-    print(f'near array is: {near}')
+    # print(f'near array is: {near}')
     print(f'edges are: {edges}')
 
+    # finding the edge with lowest weight
     min_tuple = min(edges, key=itemgetter(2))
+
+    # storing the minimum weight edge in minimun spanning tree
     edges_in_mst[0] = min_tuple[:2]
+
+    # adding the vertices of selected edge in a set
     set_of_vertices = set()
     set_of_vertices.add(min_tuple[0])
     set_of_vertices.add(min_tuple[1])
-    print(set_of_vertices)
+    # print(set_of_vertices)
+
+    # adding the cost of the edge to the total cost of MST
     cost = min_tuple[2]
     min_cost += cost
-    print(f'{min_cost} - -> {edges_in_mst}')
+    # print(f'{min_cost} - -> {edges_in_mst}')
 
     for key, value in near.items():
         print(f'{key} --> {value}')
@@ -46,10 +56,10 @@ if __name__ == "__main__":
 
     # generating vertices
     vertices = g.keys()
-    print(f'vertices of the graph are: {vertices}')
+    # print(f'vertices of the graph are: {vertices}')
     no_of_vertices = len(vertices)
 
-    # generating edges
+    # generating weighted edges
     # edges = [(1, 2, 28), (1, 6, 10) .............]
     edges = []
     for key, value in g.items():
@@ -66,7 +76,8 @@ if __name__ == "__main__":
         edges[index].append(cost)
         edges[index] = tuple(edges[index])
 
+    # ceating an empty 2D list of dimension [5][2]
     edges_in_mst = [[None for _ in range(2)] for _ in range(no_of_vertices-1)]
-    print(edges_in_mst)
+    # print(edges_in_mst)
 
     prims(g, edges, vertices, edges_in_mst)
