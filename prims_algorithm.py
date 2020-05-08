@@ -2,7 +2,7 @@ from operator import itemgetter
 
 
 def prims(g, edges, vertices, edges_in_mst):
-    min_cost = 0
+    cost_of_mst = 0
 
     # creating a dictionary with vertices as its key and distance from the
     # selected edges as value
@@ -20,28 +20,34 @@ def prims(g, edges, vertices, edges_in_mst):
     edges_in_mst[0] = min_tuple[:2]
 
     # adding the vertices of selected edge in a set
-    set_of_vertices = set()
-    set_of_vertices.add(min_tuple[0])
-    set_of_vertices.add(min_tuple[1])
-    # print(set_of_vertices)
+    vertices_in_mst = set()
+    vertices_in_mst.add(min_tuple[0])
+    vertices_in_mst.add(min_tuple[1])
+    # print(vertices_in_mst)
 
     # adding the cost of the edge to the total cost of MST
     cost = min_tuple[2]
-    min_cost += cost
-    # print(f'{min_cost} - -> {edges_in_mst}')
+    cost_of_mst += cost
+    # print(f'{cost_of_mst} - -> {edges_in_mst}')
 
     for key, value in near.items():
         print(f'{key} --> {value}')
-        if key in set_of_vertices:
+        print(vertices_in_mst)
+        # if vertex has already been selected in MST, distance
+        # of it in the near dictionary should be zero
+        if key in vertices_in_mst:
             near[key] = 0
         else:
-            for key_2, value_2 in g.items():
-                for key_3, value_3 in value_2.items():
-                    if key_3 in set_of_vertices:
-                        if near[key] > value_3:
-                            near[key] = value_3
-        smallest_weight = min(near, key=itemgetter(1))
-        print(near)
+            for vertex, value_in_vertex in g.items():
+                for inner_vertex, weight in value_in_vertex.items():
+                    if inner_vertex in vertices_in_mst:
+                        print('True')
+                        if near[key] > weight:
+                            near[key] = weight
+
+        # find the key of dictionary which corresponds to the minimum value
+        smallest_weight = min(near, key=near.get)
+        print(smallest_weight)
 
 
 if __name__ == "__main__":
