@@ -41,7 +41,6 @@ def prims(g, edges, vertices, edges_in_mst):
             for vertex, value_in_vertex in g.items():
                 for inner_vertex, weight in value_in_vertex.items():
                     if inner_vertex in vertices_in_mst:
-                        print('True')
                         if near[key] > weight:
                             near[key] = weight
 
@@ -57,13 +56,27 @@ if __name__ == "__main__":
         3: {2: 16, 4: 12},
         4: {3: 12, 5: 22, 7: 18},
         5: {4: 22, 6: 25, 7: 24},
-        6: {1: 10, 5: 25}
+        6: {1: 10, 5: 25},
+        7: {2: 14, 4: 18, 5: 24}
     }
+    size = len(g)
 
     # generating vertices
     vertices = g.keys()
     # print(f'vertices of the graph are: {vertices}')
     no_of_vertices = len(vertices)
+
+    # creating an empty cost matrix of size [vertices][vertices]
+    cost_matrix = [[float("inf") for _ in range(size+1)] for _ in range(size+1)]
+
+    # populating the cost matrix with the weight of the edge, cost of
+    # the two vertices (say k, l) will be denoted by cost_matrix[k][l]
+    for key, value in g.items():
+        cost_matrix[key][key] = 0
+        for adjacent_key, weight in value.items():
+            print(f'{adjacent_key} --> {weight}')
+            cost_matrix[key][adjacent_key] = weight
+    print(cost_matrix)
 
     # generating weighted edges
     # edges = [(1, 2, 28), (1, 6, 10) .............]
