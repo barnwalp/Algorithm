@@ -4,10 +4,11 @@ from operator import itemgetter
 def prims(g, edges, vertices, edges_in_mst):
     cost_of_mst = 0
 
-    # creating a dictionary with vertices as its key and distance from the
-    # selected edges as value
+    # creating a dictionary near with vertices as its key and minimum distance
+    # from the vertices of the edge already selected for MST as value
+
+    # populating the dictionary with infinite value
     near = {}
-    # no_of_vertices = len(vertices)
     for vertex in vertices:
         near[vertex] = float("inf")
     print(f'near array is: {near}')
@@ -23,7 +24,6 @@ def prims(g, edges, vertices, edges_in_mst):
     vertices_in_mst = set()
     vertices_in_mst.add(min_tuple[0])
     vertices_in_mst.add(min_tuple[1])
-    # print(vertices_in_mst)
 
     # adding the cost of the edge to the total cost of MST
     cost = min_tuple[2]
@@ -31,7 +31,7 @@ def prims(g, edges, vertices, edges_in_mst):
     # print(f'{cost_of_mst} - -> {edges_in_mst}')
 
     for key, value in near.items():
-        # print(f'{key} --> {value}')
+        print(f'{key} --> {value}')
         # print(vertices_in_mst)
         # if vertex has already been selected in MST, distance
         # of it in the near dictionary should be zero
@@ -60,12 +60,13 @@ if __name__ == "__main__":
     }
     size = len(g)
 
-    print(f'cost matrix using dictionary is: {g[1][6]}')
     # generating vertices
     vertices = g.keys()
     # print(f'vertices of the graph are: {vertices}')
     no_of_vertices = len(vertices)
 
+    # cost can simply be found using dictionary methods
+    print(f'cost matrix using dictionary is: {g[1][6]}')
     # creating an empty cost matrix of size [vertices+1][vertices+1]
     # as list will start with index 0 and vertices start with 1; so to
     # accomodate 7 vertices, 8 indices will be required
@@ -83,8 +84,7 @@ if __name__ == "__main__":
     #         cost_matrix[key][adjacent_key] = weight
     # print(cost_matrix)
 
-    # generating weighted edges like following
-    # edges = [(1, 2, 28), (1, 6, 10) .............]
+    # generating weighted edges; [(1, 2, 28), (1, 6, 10)....]
     edges = []
     for key, value in g.items():
         # print(f'{key} --> {value}')
@@ -108,6 +108,3 @@ if __name__ == "__main__":
     print(edges_in_mst)
 
     prims(g, edges, vertices, edges_in_mst)
-
-    # check = [_ for _ in range(5)]
-    # print(check)
