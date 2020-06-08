@@ -3,6 +3,7 @@ from operator import itemgetter
 
 def prims(g, edges, vertices, edges_in_mst):
     cost_of_mst = 0
+    mst_edges = []
 
     # creating a dictionary near with vertices as its key and minimum distance
     # from the vertices of the edge already selected for MST as value
@@ -16,9 +17,9 @@ def prims(g, edges, vertices, edges_in_mst):
 
     # finding the edge with lowest weight
     min_tuple = min(edges, key=itemgetter(2))
-
+    edge = min_tuple[:2]
     # storing the minimum weight edge in minimun spanning tree
-    edges_in_mst[0] = min_tuple[:2]
+    mst_edges.append(edge)
 
     # adding the vertices of selected edge in a set
     vertices_in_mst = set()
@@ -32,20 +33,23 @@ def prims(g, edges, vertices, edges_in_mst):
 
     for key, value in near.items():
         print(f'{key} --> {value}')
-        # print(vertices_in_mst)
         # if vertex has already been selected in MST, distance
         # of it in the near dictionary should be zero
         if key in vertices_in_mst:
             near[key] = 0
         else:
-            for vertex, value_in_vertex in g.items():
-                for inner_vertex, weight in value_in_vertex.items():
-                    if inner_vertex in vertices_in_mst:
-                        if near[key] > weight:
-                            near[key] = weight
-
-        # find the key of dictionary which corresponds to the minimum value
-        # smallest_weight = min(near, key=near.get)
+            for vertex, weight in g[key].items():
+                if vertex in vertices_in_mst:
+                    current_value = near[key]
+                    near[key] = min(current_value, weight)
+                    temp_edge = [vertex, key]
+                    temp_weight = weight
+    print(f'{temp_edge} --> {temp_weight}')
+    print(near)
+    mst_edges.append(temp_edge)
+    cost_of_mst += temp_weight
+    print(f'{mst_edges} --> {cost_of_mst}')
+    # smallest_weight = min(near, key=near.get)
 
 
 if __name__ == "__main__":
@@ -105,6 +109,6 @@ if __name__ == "__main__":
         [None for _ in range(2)]
         for _ in range(no_of_vertices-1)
     ]
-    print(edges_in_mst)
+    print(f'Final edges in mst are: {edges_in_mst}')
 
     prims(g, edges, vertices, edges_in_mst)
