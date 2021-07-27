@@ -1,3 +1,9 @@
+"""
+A heap is a tree based DS that satisfies the heap invariant
+(also called heap property): In max/min heap, for any give 
+node C, if P is a parent node of C, then the key (the value) 
+of P is greater/smaller than or equal to the key of C.
+"""
 import math
 
 
