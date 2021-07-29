@@ -1,3 +1,6 @@
+from tree import Tree
+
+
 class BinaryTree(Tree):
     """Abstract base class representing a binary tree structure"""
 
