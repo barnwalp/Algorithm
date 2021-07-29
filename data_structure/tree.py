@@ -49,3 +49,23 @@ class Tree:
     def is_empty(self):
         """Return True if the tree is empty"""
         return len(self) == 0
+
+    # ----------- Extra methods implemented personally -------------
+    def depth(self, p):
+        """Return the depth of the node having Position P"""
+        if self.is_root(p):
+            return 0
+        else:
+            return 1 + self.depth(self.parent(p))
+
+    def height(self, p=None):
+        if p is None:
+            """if p is None, return the height of entire tree"""
+            p = self.root()
+            return self.height(p)
+        else:
+            """Return the height of the subtree rooted at Position P"""
+            if self.is_leaf(p):
+                return 0
+            else:
+                return 1 + max(self.height(n) for n in self.children(p))
