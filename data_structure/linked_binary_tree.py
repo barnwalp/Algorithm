@@ -5,6 +5,8 @@ class LinkedBinaryTree(BinaryTree):
     """Lined representation of binary tree structure"""
 
     class _Node:        # Lightweight non-public class for storing a node
+        # variable or method with single underscore is meant for internal use only.
+        # however this is not enforced by python. it's more of a hint for developers
         __slots__ = '_element', '_parent', '_left', '_right'
 
         def __init__(self, element, parent=None, left=None, right=None):
