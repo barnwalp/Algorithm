@@ -42,5 +42,20 @@ const twoSumBf2 = function(nums, target) {
   return null;
 };
 
-console.log(twoSumBf1([5,4,3,2,1], 9));
-console.log(twoSumBf2([1,3,6,5], 9));
+const twoSumOptimized = function(nums, target) {
+  const hashMap = {}
+  for(let p1=0; p1<nums.length; p1++) {
+    let numToFind = target - nums[p1];
+    hashMap[numToFind] = p1;
+    value = nums[p1];
+    if(hashMap[value] !== undefined) {
+      return [p1, hashMap[value]];
+    }
+  }
+  return null;
+};
+
+// console.log(twoSumBf1([5,4,3,2,1], 9));
+// console.log(twoSumBf2([1,3,6,5], 9));
+// console.log(twoSumOptimized([1,3,7,9,2], 11));
+console.log(twoSumOptimized([3,2,4], 6));
