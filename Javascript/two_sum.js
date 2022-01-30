@@ -16,18 +16,31 @@
 // [5]               t=5     null
 // [1, 6]            t=7     [0, 1]
 
-function two_sum(nums, target) {
-  for(let [index_1, value_1] of nums.entries()) {
-    desired_val = target - value_1;
-    // console.log(`loop: ${index_1+1} desired value: ${desired_val}`);
-    for(let [index_2, value_2] of nums.slice(index_1+1).entries()){
+function twoSumBf1(nums, target) {
+  for(let [index1, value1] of nums.entries()) {
+    desiredVal = target - value1;
+    // console.log(`loop: ${index1+1} desired value: ${desiredVal}`);
+    for(let [index2, value2] of nums.slice(index1+1).entries()){
       // console.log(`actual value: ${value_2}`);
-      if (value_2 == desired_val) {
-        return [index_1, (index_2+index_1+1)];
+      if (value2 == desiredVal) {
+        return [index1, (index2+index1+1)];
       }
     }
   }
   return null;
 }
 
-console.log(two_sum([5], 9));
+const twoSumBf2 = function(nums, target) {
+  for(let p1=0; p1<nums.length; p1++) {
+    numberToFind = target - nums[p1];
+    for(p2=p1+1; p2<nums.length; p2++){
+      if (nums[p2] == numberToFind) {
+        return [p1, p2];
+      }
+    }
+  }
+  return null;
+};
+
+console.log(twoSumBf1([5,4,3,2,1], 9));
+console.log(twoSumBf2([1,3,6,5], 9));
