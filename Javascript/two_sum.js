@@ -44,13 +44,15 @@ const twoSumBf2 = function(nums, target) {
 
 const twoSumOptimized = function(nums, target) {
   const hashMap = {}
-  for(let p1=0; p1<nums.length; p1++) {
-    value = nums[p1];
+  for(let p=0; p<nums.length; p++) {
+    value = nums[p];
+    // Checking whether the hashMap contains the target value
     if(hashMap[value] !== undefined) {
-      return [p1, hashMap[value]];
+      return [p, hashMap[value]];
     }
-    let numToFind = target - nums[p1];
-    hashMap[numToFind] = p1;
+    // Creating hashMap
+    let numToFind = target - nums[p];
+    hashMap[numToFind] = p;
   }
   return null;
 };
