@@ -14,10 +14,10 @@
 // Test Cases:
 const testCase1 = [0,0]                 //0
 const testCase2 = [3,4]                 //3
-const testCase3 = [1,2,3,6,4,7]         //18
+const testCase3 = [1,2,3,6,4,7]         //12
 const testCase4 = [1,8,6,2,5,4,8,3,7]   //49
 
-const maxArea = function(height) {
+const maxAreaBf = function(height) {
   area=0;
   for(p1=0; p1<height.length; p1++) {
     for(p2=p1+1; p2<height.length; p2++) {
@@ -30,6 +30,22 @@ const maxArea = function(height) {
   return area;
 }
 
+const maxAreaOptimized = function(height) {
+  area = 0;
+  let p1=0;
+  let p2=height.length-1;
+  while(p1<p2) {
+    tempArea = (p2-p1)*(Math.min(height[p1], height[p2]));
+    area = Math.max(area, tempArea);
+    if (height[p1] < height[p2]) {
+      p1++;
+    } else {
+      p2--;
+    }
+  }
+  return area;
+}
+
 const findArea = function(height, p1, p2) {
   base = p2-p1;
   height = Math.min(height[p1], height[p2]);
@@ -37,4 +53,7 @@ const findArea = function(height, p1, p2) {
 }
 
 // console.log(findArea(testCase3, 1, 4));
-console.log(maxArea(testCase4));
+console.log(maxAreaOptimized(testCase1));
+console.log(maxAreaOptimized(testCase2));
+console.log(maxAreaOptimized(testCase3));
+console.log(maxAreaOptimized(testCase4));
