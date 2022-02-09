@@ -72,13 +72,11 @@ const trapRainBf = function(height) {
   for(let p=0; p<height.length; p++) {
     maxLeft = findLeft(p, height);
     maxRight = findRight(p, height);
-    console.log({maxLeft, maxRight});
+    // console.log({maxLeft, maxRight});
     value = Math.min(maxLeft, maxRight)-height[p];
-    if(value<0) {
-      value = 0;
-    }
+    value = Math.max(value, 0);
     area += value;
-    console.log({value, area});
+    // console.log({value, area});
   }
   return area;
 }
@@ -103,6 +101,55 @@ const findRight = function(p, height) {
   return max;
 }
 
-// console.log(findLeft(4, testCase10));
-// console.log(findRight(1, testCase10));
-console.log(trapRainBf(testCase4));
+const createMaxLeft = function(h) {
+  let maxValue=0; maxLeft=[0];
+  for(let i=1; i<h.length; i++) {
+    if (h[i-1]>maxValue) {
+      maxValue = h[i-1];
+    }
+    maxLeft.push(maxValue);
+  }
+  return maxLeft;
+}
+
+const createMaxRight = function(h) {
+  h = h.slice().reverse();
+  let maxRight=[];
+  maxRight = createMaxLeft(h);
+  return maxRight.reverse();
+}
+
+const trapRainOptimized = function(height) {
+  let area=0; value=0;
+  let maxLeftArray=createMaxLeft(height);
+  let maxRightArray=createMaxRight(height);
+  // console.log({height, maxLeftArray, maxRightArray});
+  for(let p=0; p<height.length; p++) {
+    value = Math.min(maxLeftArray[p], maxRightArray[p])-height[p];
+    value = Math.max(value, 0);
+    area += value;
+    // console.log({p, value, area});
+  }
+  return area;
+}
+
+// console.log(trapRainBf(testCase9));
+// console.log(trapRainBf(testCase10));
+// console.log(createMaxLeft(testCase7))
+// console.log(createMaxLeft(testCase8))
+// console.log(createMaxLeft(testCase10));
+// console.log(createMaxRight(testCase10));
+// console.log(createMaxRight(testCase7))
+// console.log(createMaxRight(testCase8))
+// console.log(createMaxRight(testCase9))
+
+console.log(trapRainOptimized(testCase1));
+console.log(trapRainOptimized(testCase2));
+console.log(trapRainOptimized(testCase3));
+console.log(trapRainOptimized(testCase4));
+console.log(trapRainOptimized(testCase5));
+console.log(trapRainOptimized(testCase6));
+console.log(trapRainOptimized(testCase7));
+console.log(trapRainOptimized(testCase8));
+console.log(trapRainOptimized(testCase9));
+console.log(trapRainOptimized(testCase10));
