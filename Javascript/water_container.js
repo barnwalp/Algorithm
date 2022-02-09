@@ -7,7 +7,7 @@
 // water.
 
 // Constraints:
-// 1. x-axis not to be considered as a line
+// 1. y-axis not to be considered as a line
 // 2. Minimum two numbers are present in the array
 // 3. height can have values as zero
 
@@ -30,6 +30,12 @@ const maxAreaBf = function(height) {
   return area;
 }
 
+const findArea = function(height, p1, p2) {
+  base = p2-p1;
+  height = Math.min(height[p1], height[p2]);
+  return base*height;
+}
+
 const maxAreaOptimized = function(height) {
   area = 0;
   let p1=0;
@@ -46,13 +52,6 @@ const maxAreaOptimized = function(height) {
   return area;
 }
 
-const findArea = function(height, p1, p2) {
-  base = p2-p1;
-  height = Math.min(height[p1], height[p2]);
-  return base*height;
-}
-
-// console.log(findArea(testCase3, 1, 4));
 console.log(maxAreaOptimized(testCase1));
 console.log(maxAreaOptimized(testCase2));
 console.log(maxAreaOptimized(testCase3));
