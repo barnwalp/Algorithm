@@ -119,7 +119,7 @@ const createMaxRight = function(h) {
   return maxRight.reverse();
 }
 
-const trapRainOptimized = function(height) {
+const trapRain = function(height) {
   let area=0; value=0;
   let maxLeftArray=createMaxLeft(height);
   let maxRightArray=createMaxRight(height);
@@ -133,15 +133,28 @@ const trapRainOptimized = function(height) {
   return area;
 }
 
-// console.log(trapRainBf(testCase9));
-// console.log(trapRainBf(testCase10));
-// console.log(createMaxLeft(testCase7))
-// console.log(createMaxLeft(testCase8))
-// console.log(createMaxLeft(testCase10));
-// console.log(createMaxRight(testCase10));
-// console.log(createMaxRight(testCase7))
-// console.log(createMaxRight(testCase8))
-// console.log(createMaxRight(testCase9))
+const trapRainOptimized = function(height) {
+  let value=0; area=0;
+  let pl=0; pr=height.length-1;
+  let maxPl=0; maxPr=0;
+  while(pl<pr) {
+    if(height[pl]<=height[pr]) {
+      value = maxPl-height[pl];
+      value = Math.max(value, 0);
+      area += value;
+      maxPl = Math.max(maxPl, height[pl]);
+      pl++;
+    }
+    else {
+      value = maxPr-height[pr];
+      value = Math.max(value, 0);
+      area += value;
+      maxPr = Math.max(maxPr, height[pr]);
+      pr--;
+    }
+  }
+  return area;
+}
 
 console.log(trapRainOptimized(testCase1));
 console.log(trapRainOptimized(testCase2));
