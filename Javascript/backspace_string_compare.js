@@ -18,3 +18,31 @@ let s5='#pp'; t5='##pp';          //true
 let s6='#'; t6='###########';     //true
 let s7='abc'; t7='bcd';           //false
 let s8='pqr#'; t8='pqpr#';        //false
+
+const compareStringBf = function(s, t) {
+  s = createString(s);
+  t = createString(t);
+  return s==t;
+}
+
+const createString = function(str) {
+  new_str='';
+  for(let i=0; i<str.length; i++) {
+    if(str[i] != '#') {
+      new_str += str[i];
+    }
+    else {
+      new_str = new_str.slice(0,-1);
+    }
+  }
+  return new_str;
+}
+
+console.log(compareStringBf(s1,t1));
+console.log(compareStringBf(s2,t2));
+console.log(compareStringBf(s3,t3));
+console.log(compareStringBf(s4,t4));
+console.log(compareStringBf(s5,t5));
+console.log(compareStringBf(s6,t6));
+console.log(compareStringBf(s7,t7));
+console.log(compareStringBf(s8,t8));
