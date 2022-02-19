@@ -16,8 +16,9 @@ let s3='ab#c'; t3='ad#c';         //true
 let s4='m###'; t4='y#';           //true
 let s5='#pp'; t5='##pp';          //true
 let s6='#'; t6='###########';     //true
-let s7='abc'; t7='bcd';           //false
+let s7='a##x###'; t7='b##';           //false
 let s8='pqr#'; t8='pqpr#';        //false
+let s9='bxj##tw'; t9='bxo#j##tw'; //false
 
 const compareStringBf = function(s, t) {
   s = createString(s);
@@ -54,7 +55,16 @@ const compareStringOptimized = function(s, t) {
         count++;
         p1--;
       }
-      p1 = p1-count;
+      while (count>0) {
+        if(s[p1] != '#') {
+          p1--;
+          count--;
+        }
+        else {
+          p1--;
+          count++;
+        }
+      }
     }
     if (t[p2] == '#') {
       let count=0;
@@ -62,7 +72,16 @@ const compareStringOptimized = function(s, t) {
         count++;
         p2--;
       }
-      p2 = p2-count;
+      while (count>0) {
+        if(t[p2] != '#') {
+          p2--;
+          count--;
+        }
+        else {
+          p2--;
+          count++;
+        }
+      }
     }
   }
   return true;
@@ -76,3 +95,4 @@ console.log(compareStringOptimized(s5,t5));
 console.log(compareStringOptimized(s6,t6));
 console.log(compareStringOptimized(s7,t7));
 console.log(compareStringOptimized(s8,t8));
+console.log(compareStringOptimized(s9,t9));
