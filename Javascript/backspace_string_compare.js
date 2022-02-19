@@ -38,11 +38,41 @@ const createString = function(str) {
   return new_str;
 }
 
-console.log(compareStringBf(s1,t1));
-console.log(compareStringBf(s2,t2));
-console.log(compareStringBf(s3,t3));
-console.log(compareStringBf(s4,t4));
-console.log(compareStringBf(s5,t5));
-console.log(compareStringBf(s6,t6));
-console.log(compareStringBf(s7,t7));
-console.log(compareStringBf(s8,t8));
+const compareStringOptimized = function(s, t) {
+  let p1=s.length-1, p2=t.length-1;
+  while (p1>=0 || p2>=0) {
+    if (s[p1] != '#' && t[p2] != '#') {
+      if (s[p1] != t[p2]) {
+        return false;
+      }
+      p1--;
+      p2--;
+    }
+    if (s[p1] == '#') {
+      let count=0;
+      while (s[p1] == '#') {
+        count++;
+        p1--;
+      }
+      p1 = p1-count;
+    }
+    if (t[p2] == '#') {
+      let count=0;
+      while (t[p2] == '#') {
+        count++;
+        p2--;
+      }
+      p2 = p2-count;
+    }
+  }
+  return true;
+}
+
+console.log(compareStringOptimized(s1,t1));
+console.log(compareStringOptimized(s2,t2));
+console.log(compareStringOptimized(s3,t3));
+console.log(compareStringOptimized(s4,t4));
+console.log(compareStringOptimized(s5,t5));
+console.log(compareStringOptimized(s6,t6));
+console.log(compareStringOptimized(s7,t7));
+console.log(compareStringOptimized(s8,t8));
