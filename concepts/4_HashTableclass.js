@@ -33,10 +33,27 @@ class HashTable {
     }
     return undefined;
   }
+
+  keys() {
+    const keyArrays = [];
+    for (let i=0; i<this.data.length; i++) {
+      if (this.data[i]) {
+        for (let j=0; j<this.data[i].length; j++){
+          keyArrays.push(this.data[i][j][0]);
+        }
+      }
+    }
+    return keyArrays;
+  }
 }
 
 const myHashTable = new HashTable(10);
-console.log(myHashTable.set('grapes', 10000));
-console.log(myHashTable.set('apples', 50000));
+myHashTable.set('grapes', 100);
+myHashTable.set('apples', 500);
+myHashTable.set('mangoes', 200);
+myHashTable.set('bananas', 100);
+myHashTable.set('oranges', 50);
+console.log(myHashTable);
 console.log(myHashTable.get('grapes'));
 console.log(myHashTable.get('apples'));
+console.log(myHashTable.keys());
