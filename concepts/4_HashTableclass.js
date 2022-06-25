@@ -11,7 +11,32 @@ class HashTable {
     }
     return hash;
   }
+
+  set(key, value) {
+    let address = this._hash(key);
+    if (!this.data[address]) {
+      this.data[address] = [];
+    }
+    this.data[address].push([key, value]);
+    return this.data;
+  }
+
+  get(key) {
+    let address = this._hash(key);
+    const currBucket = this.data[address];
+    if (currBucket) {
+      for(let i=0; i<currBucket.length; i++) {
+        if (currBucket[i][0] === key) {
+          return currBucket[i][1];
+        }
+      }
+    }
+    return undefined;
+  }
 }
 
-const myHashTable = new HashTable(50);
-console.log(myHashTable._hash('kumar'));
+const myHashTable = new HashTable(10);
+console.log(myHashTable.set('grapes', 10000));
+console.log(myHashTable.set('apples', 50000));
+console.log(myHashTable.get('grapes'));
+console.log(myHashTable.get('apples'));
