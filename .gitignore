@@ -260,3 +260,6 @@ dist
 
 # TernJS port file
 .tern-port
+
+# vs code folder
+.vscode/
