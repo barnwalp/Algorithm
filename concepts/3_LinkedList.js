@@ -41,7 +41,7 @@ class LinkedList {
     this.tail = newNode;
     this.length++;
   }
-
+  // Time Complexity: O(1)
   prepend(data) {
     const newNode = {
       value: data,
@@ -51,12 +51,44 @@ class LinkedList {
     this.head = newNode;
     this.length++;
   }
+
+  // Time Complexity: O(n)
+  insert(index, data) {
+    const newNode = {
+      value: data,
+      next: null
+    }
+    let curNode = this.head;
+    let count = 1;
+    while (count != index) {
+      curNode = curNode.next;
+      count++;
+    } 
+    newNode.next = curNode.next;
+    curNode.next = newNode;
+    this.length++;
+  }
+
+  // Time Complexity: O(n)
+  printList() {
+    const arr = [];
+    let curNode = this.head;
+    while (curNode !== null) {
+      arr.push(curNode.value);
+      curNode = curNode.next;
+    }
+    console.log(arr);
+  }
 }
 
 const myLinkedList = new LinkedList(10);
-// console.dir(myLinkedList, {depth: null});
 myLinkedList.prepend(5);
 myLinkedList.append(15);
 myLinkedList.prepend(55);
 myLinkedList.append(35);
-console.dir(myLinkedList, {depth: null});
+myLinkedList.insert(2, 95);
+myLinkedList.insert(3, 85);
+myLinkedList.insert(1, 75);
+// console.dir(myLinkedList, {depth: null});
+// console.dir(myLinkedList, {depth: null});
+myLinkedList.printList();
