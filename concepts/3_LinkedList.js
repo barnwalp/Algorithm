@@ -69,6 +69,26 @@ class LinkedList {
     this.length++;
   }
 
+  remove(index) {
+    if (index === 0) {
+      const removedNode = this.head;
+      this.head = this.head.next;
+      this.length--;
+      return removedNode.value;
+    }
+    let curNode = this.head;
+    let count = 1;
+    while(count != index) {
+      curNode = curNode.next;
+      count++;
+    }
+    const removedNode = curNode.next;
+    curNode.next = removedNode.next;
+    removedNode.next = null;
+    this.length--;
+    return removedNode.value;
+  }
+
   // Time Complexity: O(n)
   printList() {
     const arr = [];
@@ -89,6 +109,8 @@ myLinkedList.append(35);
 myLinkedList.insert(2, 95);
 myLinkedList.insert(3, 85);
 myLinkedList.insert(1, 75);
-// console.dir(myLinkedList, {depth: null});
+myLinkedList.remove(0);
+myLinkedList.remove(5);
+
 // console.dir(myLinkedList, {depth: null});
 myLinkedList.printList();
