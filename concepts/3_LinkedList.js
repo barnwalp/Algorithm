@@ -31,26 +31,32 @@ class LinkedList {
     this.tail = this.head;
     this.length = 1;
   }
-
+  // Time Complexity: O(1)
   append(data) {
-    const node = {
+    const newNode = {
       value: data,
       next: null
     };
-    let tNode = this.head;
-    while (tNode !== this.tail) {
-      tNode = tNode.next;
+    this.tail.next = newNode;
+    this.tail = newNode;
+    this.length++;
+  }
+
+  prepend(data) {
+    const newNode = {
+      value: data,
+      next: null,
     }
-    tNode.next = node;
-    this.tail = node;
+    newNode.next = this.head;
+    this.head = newNode;
     this.length++;
   }
 }
 
 const myLinkedList = new LinkedList(10);
-console.dir(myLinkedList, {depth: null});
-myLinkedList.append(5);
+// console.dir(myLinkedList, {depth: null});
+myLinkedList.prepend(5);
 myLinkedList.append(15);
-myLinkedList.append(55);
+myLinkedList.prepend(55);
 myLinkedList.append(35);
 console.dir(myLinkedList, {depth: null});
