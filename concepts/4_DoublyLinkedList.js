@@ -47,6 +47,7 @@ class DoublyLinkedList {
       count++;
     } 
     newNode.next = curNode.next;
+    curNode.next.prev = newNode;
     newNode.prev = curNode;
     curNode.next = newNode;
     this.length++;
@@ -93,19 +94,31 @@ class DoublyLinkedList {
     }
     console.log(arr);
   }
+
+  // Time Complexity: O(n)
+  reversePrint() {
+    const arr = [];
+    let curNode = this.tail;
+    while(curNode != null) {
+      arr.push(curNode.value);
+      curNode = curNode.prev;
+    }
+    console.log(arr);
+  }
 }
 
 const myLinkedList = new DoublyLinkedList(10);
 myLinkedList.prepend(5);
 myLinkedList.append(15);
-// myLinkedList.prepend(55);
+myLinkedList.prepend(55);
 myLinkedList.append(35);
 myLinkedList.insert(2, 95);
 myLinkedList.insert(3, 85);
 myLinkedList.insert(1, 75);
 myLinkedList.remove(0);
 myLinkedList.remove(2);
-myLinkedList.remove(4);
+myLinkedList.remove(3);
 
 // console.dir(myLinkedList, {depth: null});
 myLinkedList.printList();
+myLinkedList.reversePrint();
