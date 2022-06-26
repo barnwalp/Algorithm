@@ -89,6 +89,22 @@ class DoublyLinkedList {
     return removedNode.value;
   }
 
+  reverseList() {
+    let first = this.head;
+    this.tail = this.head;
+    let second = first.next;
+    while(second.next) {
+      let temp = second.next;
+      second.next = first;
+      first = second;
+      second = temp;
+    }
+    this.head = second;
+    this.head.next = first;
+    this.tail.next = null;
+    return this.head;
+  }
+
   // Time Complexity: O(n)
   printList() {
     const arr = [];
@@ -113,4 +129,7 @@ myLinkedList.remove(0);
 myLinkedList.remove(5);
 
 // console.dir(myLinkedList, {depth: null});
+myLinkedList.printList();
+myLinkedList.reverseList();
+console.log('after reversing');
 myLinkedList.printList();
