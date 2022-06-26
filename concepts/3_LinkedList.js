@@ -31,18 +31,26 @@ class LinkedList {
     this.tail = this.head;
     this.length = 1;
   }
+
+  append(data) {
+    const node = {
+      value: data,
+      next: null
+    };
+    let tNode = this.head;
+    while (tNode !== this.tail) {
+      tNode = tNode.next;
+    }
+    tNode.next = node;
+    this.tail = node;
+    this.length++;
+  }
 }
 
 const myLinkedList = new LinkedList(10);
-console.log(myLinkedList);
 console.dir(myLinkedList, {depth: null});
-
-const obj = {
-  a: 1,
-  b: 2,
-  c: 3,
-  d: 4,
-  e: 5,
-  f: 6,
-}
-console.dir(obj, {depth: null});
+myLinkedList.append(5);
+myLinkedList.append(15);
+myLinkedList.append(55);
+myLinkedList.append(35);
+console.dir(myLinkedList, {depth: null});
