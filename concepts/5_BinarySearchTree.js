@@ -12,11 +12,31 @@ class BinarySearchTree {
   }
 
   insert(value) {
-
+		let newNode = new Node(value);
+		if (!this.root) {
+			this.root = newNode;
+			return this.root;
+		}
+		var leader = this.root;
+		while (true) {
+			if (value >= leader.value) {
+				if (!leader.right) {
+					leader.right = newNode;
+					return this;
+				}
+				leader = leader.right;
+			} else {
+				if(!leader.left) {
+					leader.left = newNode;
+					return this;
+				}
+				leader = leader.left;
+			}
+		}
   }
 
   lookup(value) {
-
+		return null;
   }
 }
 
@@ -28,7 +48,7 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-JSON.stringify(traverse(tree.root));
+console.log(JSON.stringify(traverse(tree.root)));
 
 //       9
 //   4        20
