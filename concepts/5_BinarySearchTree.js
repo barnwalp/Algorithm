@@ -57,21 +57,44 @@ class BinarySearchTree {
   }
 	
 	remove(value) {
-		// let nodeToBeRemoved = this.lookup(value);
-		// if (!nodeToBeRemoved.right && !nodeToBeRemoved.left) {
-		// 	nodeToBeRemoved.value = null;
-		// } else if (nodeToBeRemoved.right && nodeToBeRemoved.left) {
-
-		// } else {
-		// 	if (nodeToBeRemoved.right === null) {
-		// 		nodeToBeRemoved.value = nodeToBeRemoved.left.value;
-		// 		nodeToBeRemoved.left.value = null;
-		// 	} else if (nodeToBeRemoved.left === null) {
-		// 		nodeToBeRemoved.value = nodeToBeRemoved.left.value;
-		// 		nodeToBeRemoved.right.value = null;
-		// 	}
-		// }
-		
+		if(!this.root) {
+			return false;
+		}
+		let leader = this.root;
+		let parent = null;
+		// console.log(leader);
+		// find the lookup value in the BST
+		while (true) {
+			if (value > leader.value) {
+				parent = leader;
+				leader = leader.right;
+			} else if (value < leader.value) {
+				parent = leader;
+				leader = leader.left;
+				// when lookup value is found
+			} else if (value === leader.value){
+				// if the lookupnode is a leaf node
+				if (!leader.left && !leader.right) {
+					// check if leaf is left or right child of parent
+					if (leader.value > parent.value) {
+						parent.right = null;
+					} else {
+						parent.left = null;
+					}
+					return true;
+					// if the lookupnode has only left child
+				} else if (leader.left && !leader.right) {
+					parent.left = leader.left;
+					leader.left = null;
+					return true;
+					// if the lookupnode has only right child
+				} else if (leader.right && !leader.left) {
+					parent.right = leader.right;
+					leader.right = null;
+					return true;
+				}
+			}
+		}
 	}
 }
 
@@ -83,7 +106,8 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-tree.insert(1);
+tree.remove(15);
+tree.remove(20);
 // console.log(tree.lookup(170));
 // console.log(tree.lookup(15));
 // console.log(tree.lookup(1));
