@@ -92,6 +92,43 @@ class BinarySearchTree {
 					parent.right = leader.right;
 					leader.right = null;
 					return true;
+					// if the lookupnode has both child
+				} else if (leader.left && leader.right) {
+					// Step 1: Find the lowest value node in right sub-tree
+					// let smallestNode = leader;
+					// let curNode = leader;
+					// let curParent = parent;
+					// let parentOfSmallestNode = curParent;
+					// while(curNode) {
+					// 	if (curNode.value < smallestNode.value) {
+					// 		smallestNode = curNode;
+					// 		parentOfSmallestNode = curParent;
+					// 	};
+					// 	curParent = curNode;
+					// 	curNode = curNode.right;
+					// }
+					// // Step 2: replace the node value with lowest node 
+					// // of right sub-tree, say N
+					// leader.value = smallestNode.value;
+
+					// // Step 3: remove the lowest node of right sub-tree, N
+					// // Since it will have only one right child, same algo can be used
+					// parentOfSmallestNode.left = smallestNode.right;					
+					// smallestNode.right = null;
+					let curParent = leader;
+					let curNode = leader.right;
+					while (curNode.left) {
+						curParent = curNode;
+						curNode = curNode.left;
+					}
+					leader.value = curNode.value;
+					if (curNode.right) {
+						curParent.left = curNode.right;
+						curNode.right = null;
+					} else {
+						curParent.left = null;
+
+					}
 				}
 			}
 		}
@@ -106,8 +143,8 @@ tree.insert(20);
 tree.insert(170);
 tree.insert(15);
 tree.insert(1);
-tree.remove(15);
-tree.remove(20);
+// tree.remove(15);
+// tree.remove(20);
 // console.log(tree.lookup(170));
 // console.log(tree.lookup(15));
 // console.log(tree.lookup(1));
