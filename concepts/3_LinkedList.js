@@ -22,7 +22,7 @@
 //   }
 // }
 
-class DoublyLinkedList {
+class SinglyLinkedList {
   constructor(value) {
     this.head = {
       value: value,
@@ -117,7 +117,7 @@ class DoublyLinkedList {
   }
 }
 
-const myLinkedList = new DoublyLinkedList(10);
+const myLinkedList = new SinglyLinkedList(10);
 myLinkedList.prepend(5);
 myLinkedList.append(15);
 myLinkedList.prepend(55);

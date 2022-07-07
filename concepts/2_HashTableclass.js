@@ -3,7 +3,8 @@ class HashTable {
     this.data = new Array(size);
   }
   
-  // _ means it is a private method
+  // _ means it is a private method, this returns a same  value i.e. hash
+	// given a key, which is used as an address
   _hash(key) {
     let hash = 0;
     for (let i=0; i<key.length; i++) {
@@ -11,16 +12,20 @@ class HashTable {
     }
     return hash;
   }
-
+	
+	// populating the data structure based on the has created
+	// using the given key
   set(key, value) {
     let address = this._hash(key);
     if (!this.data[address]) {
       this.data[address] = [];
     }
+		// new value is pushed in an array to avoid collision
     this.data[address].push([key, value]);
     return this.data;
   }
-
+	
+	// returning the value in O(n) time by providing the key
   get(key) {
     let address = this._hash(key);
     const currBucket = this.data[address];
@@ -33,7 +38,8 @@ class HashTable {
     }
     return undefined;
   }
-
+	
+	// returning an array consisting of all keys of the data structure
   keys() {
     const keyArrays = [];
     for (let i=0; i<this.data.length; i++) {

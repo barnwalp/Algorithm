@@ -6,13 +6,13 @@ class DoublyLinkedList {
       prev: null
     }
     this.tail = this.head;
-    this.length = 1;
+    this.length 
   }
   // Time Complexity: O(1)
   append(data) {
     const newNode = {
       value: data,
-      next: null,
+      nex: null,
       prev: null,
     };
     this.tail.next = newNode;
