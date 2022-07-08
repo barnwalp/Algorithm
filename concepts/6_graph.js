@@ -39,11 +39,13 @@ class Graph {
 	}
 
 	addVertex(node) {
-
+		this.adjacentList[node] = [];
+		this.numberOfNodes++;
 	}
 
 	addEdge(node1, node2) {
-
+		this.adjacentList[node1].push(node2);
+		this.adjacentList[node2].push(node1);
 	}
 
 	showConnections() {
@@ -77,6 +79,7 @@ myGraph.addEdge('1', '2');
 myGraph.addEdge('1', '0');
 myGraph.addEdge('0', '2');
 myGraph.addEdge('6', '5');
+myGraph.showConnections();
 
 // Answer:
 // 0-->1 2
