@@ -41,7 +41,19 @@ function factorial(n) {
 	return n * factorial(n-1);
 }
 
+function printFun(test) {
+	if (test < 1) {
+		return;
+	} else {
+		console.log(test);
+		printFun(test - 1);
+		console.log(test);
+		return;
+	}
+}
 
-console.log(`2 to the power 5 is: ${pow(2, 5)}`);
-console.log(`Sum of integer upto 5 is: ${sum(5)}`);
-console.log(`Factorial of 5 is: ${factorial(5)}`);
+// console.log(`2 to the power 5 is: ${pow(2, 5)}`);
+// console.log(`Sum of integer upto 5 is: ${sum(5)}`);
+// console.log(`Factorial of 5 is: ${factorial(5)}`);
+let test = 3;
+printFun(test);
