@@ -52,8 +52,23 @@ function printFun(test) {
 	}
 }
 
-// console.log(`2 to the power 5 is: ${pow(2, 5)}`);
-// console.log(`Sum of integer upto 5 is: ${sum(5)}`);
-// console.log(`Factorial of 5 is: ${factorial(5)}`);
-let test = 3;
-printFun(test);
+function fibonacci(num) {
+	if (num === 0) {
+		return 0;
+	} else if (num === 1 || num === 2) {
+		return 1;
+	} else {
+		return fibonacci(num-1) + fibonacci(num-2);
+	}
+}
+
+function fib_series(num) {
+	for (let i=0; i<=num; i++) {
+		console.log(fibonacci(i));
+	}
+}
+
+console.log(`2 to the power 5 is: ${pow(2, 5)}`);
+console.log(`Sum of integer upto 5 is: ${sum(5)}`);
+console.log(`Factorial of 5 is: ${factorial(5)}`);
+console.log(`Fibonacci seried of 6 is: ${fib_series(6)}`)
