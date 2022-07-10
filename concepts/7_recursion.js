@@ -53,14 +53,43 @@ function printFun(test) {
 }
 
 function fibonacci(num) {
-	if (num === 0) {
-		return 0;
-	} else if (num === 1 || num === 2) {
-		return 1;
+	if (num === 0 || num === 1) {
+		return num;
 	} else {
 		return fibonacci(num-1) + fibonacci(num-2);
 	}
 }
+
+/*
+	* Time Complexity:
+	* T(n) = C									n<=1
+	* T(n) = T(n-1) + T(n-2)		n>1	
+	* T(0) = T(1) = 1 
+	*
+	* In Case of Upper Bound: T(n-2) ~ T(n-1)
+	* T(n) = 2T(n-1) + C				C=4
+	* T(n) = 2{2T(n-2) + C} + C
+	*			 = 4T(n-2) + 3C				k=2
+	*			 = 8T(n-3) + 7C				k=3
+	*			 = 2^k . T(n-k) + (2^k-1)C
+	*	n-k = 0 => k=n
+	*			 = 2^n . T(0) + (2^n - 1)C
+	* T(n) = 2^n . 1 + (2^n - 1)C
+	* T(n) = (1+C).2^n - C
+	* O(n) = 2^n
+	*
+	* In case of lower bound: T(n-1) ~ T(n-2)
+	* T(n) = 2T(n-2) + C				C=4
+	* T(n) = 2{2T(n-4) + C} + C
+	*			 = 4T(n-4) + 3C				k=2
+	*			 = 8T(n-6) + 7C				k=3
+	*			 = 2^k . T(n-2k) + (2^k-1)C
+	*	n-2k = 0 => k=n/2
+	*			 = 2^(n/2) . T(0) + (2^(n/2) - 1)C
+	* T(n) = (1+C).2^(n/2) - C
+	* Omega(n) = 2^(n/2)
+*/
+
 
 function fib_series(num) {
 	for (let i=0; i<=num; i++) {
