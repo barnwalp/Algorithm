@@ -97,7 +97,18 @@ function fib_series(num) {
 	}
 }
 
+// Recursively reverse a string
+function reverseString(str) {
+	if (str === "") {
+		return "";
+	} else {
+		return reverseString(str.substr(1)) + str.charAt(0);
+	}
+}
+
+
 console.log(`2 to the power 5 is: ${pow(2, 5)}`);
 console.log(`Sum of integer upto 5 is: ${sum(5)}`);
 console.log(`Factorial of 5 is: ${factorial(5)}`);
 console.log(`Fibonacci seried of 6 is: ${fib_series(6)}`)
+console.log(`Reverse of string yoyo master: ${reverseString('yoyo master')}`)
