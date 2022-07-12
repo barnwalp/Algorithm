@@ -55,7 +55,7 @@ class BinarySearchTree {
 		}
 		return leader ? leader : false;
   }
-	
+
 	remove(value) {
 		if(!this.root) {
 			return false;
@@ -63,7 +63,7 @@ class BinarySearchTree {
 		let leader = this.root;
 		let parent = null;
 		// console.log(leader);
-		// find the lookup value in the BST
+		// find the lookup value in the bst
 		while (true) {
 			if (value > leader.value) {
 				parent = leader;
@@ -94,22 +94,22 @@ class BinarySearchTree {
 					return true;
 					// if the lookupnode has both child
 				} else if (leader.left && leader.right) {
-					// Step 1: Find the lowest value node in right sub-tree
-					// let smallestNode = leader;
-					// let curNode = leader;
-					// let curParent = parent;
-					// let parentOfSmallestNode = curParent;
-					// while(curNode) {
-					// 	if (curNode.value < smallestNode.value) {
-					// 		smallestNode = curNode;
-					// 		parentOfSmallestNode = curParent;
+					// step 1: find the lowest value node in right sub-tree
+					// let smallestnode = leader;
+					// let curnode = leader;
+					// let curparent = parent;
+					// let parentofsmallestnode = curparent;
+					// while(curnode) {
+					// 	if (curnode.value < smallestnode.value) {
+					// 		smallestnode = curnode;
+					// 		parentofsmallestnode = curparent;
 					// 	};
-					// 	curParent = curNode;
-					// 	curNode = curNode.right;
+					// 	curparent = curnode;
+					// 	curnode = curnode.right;
 					// }
-					// // Step 2: replace the node value with lowest node 
-					// // of right sub-tree, say N
-					// leader.value = smallestNode.value;
+					// // step 2: replace the node value with lowest node 
+					// // of right sub-tree, say n
+					// leader.value = smallestnode.value;
 
 					// // Step 3: remove the lowest node of right sub-tree, N
 					// // Since it will have only one right child, same algo can be used
