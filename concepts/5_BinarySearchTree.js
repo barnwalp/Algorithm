@@ -94,6 +94,37 @@ class BinarySearchTree {
 		}
 		return this.breadthFirstSearchR(queue, list);
 	}
+
+	//       9
+	//   4        20
+	// 1   6   15    170
+	// There are 3 way, depth first search can be implemented
+	// inorder: [left, root, right] [1, 4, 6, 9, 15, 20, 170]
+	// preorder: [root, left, right] [9, 4, 1, 6, 20, 15, 170] 
+	// postorder: [left, right, root] [1, 6, 4, 15, 170, 20, 9]
+
+	DFSInorder() {
+		return this.traverseInOrder(this.root, []);
+	}
+
+	DFSPreorder() {
+		return traversePreOrder(this.root, []);
+	}
+
+	DFSPostorder() {
+		return traversePostOrder(this.root, []);
+	}
+
+	traverseInOrder(node, list) {
+		if (node.left) {
+			this.traverseInOrder(node.left, list);
+		}
+		list.push(node.value);
+		if (node.right) {
+			this.traverseInOrder(node.right, list)
+		}
+		return list;
+	}
 }
 
 const tree = new BinarySearchTree();
@@ -115,11 +146,8 @@ tree.insert(1);
 // tree.remove(4);
 // console.log(JSON.stringify(traverse(tree.root)));
 // console.log(tree.breadthFirstSearch());
-console.log(tree.breadthFirstSearchR([tree.root], []));
-
-//       9
-//   4        20
-// 1   6   15    170
+// console.log(tree.breadthFirstSearchR([tree.root], []));
+console.log(tree.DFSInorder());
 
 function traverse(node) {
   const tree = {value: node.value};
