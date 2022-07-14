@@ -98,21 +98,22 @@ class BinarySearchTree {
 	//       9
 	//   4        20
 	// 1   6   15    170
+	//
 	// There are 3 way, depth first search can be implemented
 	// inorder: [left, root, right] [1, 4, 6, 9, 15, 20, 170]
 	// preorder: [root, left, right] [9, 4, 1, 6, 20, 15, 170] 
 	// postorder: [left, right, root] [1, 6, 4, 15, 170, 20, 9]
 
-	DFSInorder() {
+	DFSInOrder() {
 		return this.traverseInOrder(this.root, []);
 	}
 
-	DFSPreorder() {
-		return traversePreOrder(this.root, []);
+	DFSPreOrder() {
+		return this.traversePreOrder(this.root, []);
 	}
 
-	DFSPostorder() {
-		return traversePostOrder(this.root, []);
+	DFSPostOrder() {
+		return this.traversePostOrder(this.root, []);
 	}
 
 	traverseInOrder(node, list) {
@@ -123,6 +124,28 @@ class BinarySearchTree {
 		if (node.right) {
 			this.traverseInOrder(node.right, list)
 		}
+		return list;
+	}
+
+	traversePreOrder(node, list) {
+		list.push(node.value);
+		if (node.left) {
+			this.traversePreOrder(node.left, list);
+		}
+		if(node.right) {
+			this.traversePreOrder(node.right, list);
+		}
+		return list;
+	}
+
+	traversePostOrder(node, list) {
+		if (node.left) {
+			this.traversePostOrder(node.left, list);
+		}
+		if(node.right) {
+			this.traversePostOrder(node.right, list);
+		}
+		list.push(node.value);
 		return list;
 	}
 }
@@ -147,7 +170,9 @@ tree.insert(1);
 // console.log(JSON.stringify(traverse(tree.root)));
 // console.log(tree.breadthFirstSearch());
 // console.log(tree.breadthFirstSearchR([tree.root], []));
-console.log(tree.DFSInorder());
+console.log(tree.DFSInOrder());
+console.log(tree.DFSPreOrder());
+console.log(tree.DFSPostOrder());
 
 function traverse(node) {
   const tree = {value: node.value};
