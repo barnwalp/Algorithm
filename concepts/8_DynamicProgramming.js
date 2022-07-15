@@ -12,17 +12,21 @@ function addTo80(n) {
 }
 
 // With Memoization
-let cache = {};
 function memoizedAddTo80(n) {
-	if (n in cache) {
-		console.log('takes value from hash');
+	let cache = {};
+	return function(n) {
+		if (n in cache) {
+			console.log('takes value from hash');
+			return cache[n];
+		}
+		console.log('takes long time');
+		cache[n] = n + 80;
 		return cache[n];
 	}
-	console.log('takes long time');
-	cache[n] = n + 80;
-	return cache[n];
 }
 
-console.log(memoizedAddTo80(80))
-console.log(memoizedAddTo80(70))
-console.log(memoizedAddTo80(80))
+const meomoized = memoizedAddTo80();
+
+console.log(meomoized(80));
+console.log(meomoized(70));
+console.log(meomoized(80));
