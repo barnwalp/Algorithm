@@ -58,6 +58,26 @@ class Graph {
 		this.adjacentList[node2].push(node1);
 	}
 
+	depthFirstTraversal(src) {
+		let stack = [src];
+		let visited = [];
+		// create a visited array with 0 against all vertices
+		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
+			visited[i] = 0;	
+		}
+		while (stack.length > 0) {
+			let curNode = stack.pop();
+			visited[curNode] = 1;
+			for (let node of this.adjacentList[curNode]) {
+				console.log(`visited ${node} from ${curNode}`)
+				if (visited[node] === 0) {
+					stack.push(node);
+					visited[node] = 1;
+				}
+			}
+		}
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);
@@ -84,6 +104,9 @@ let g = {
 	6: [5],
 }
 const graph = new Graph(g);
+graph.showConnections();
+graph.depthFirstTraversal(0);
+
 // myGraph.addVertex('0');
 // myGraph.addVertex('1');
 // myGraph.addVertex('2');
@@ -100,7 +123,6 @@ const graph = new Graph(g);
 // myGraph.addEdge('0', '2');
 // myGraph.addEdge('6', '5');
 // myGraph.showConnections();
-graph.showConnections();
 
 // Answer:
 // 0-->1 2
