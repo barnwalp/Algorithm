@@ -78,6 +78,26 @@ class Graph {
 		}
 	}
 
+	breadthFirstTraversal(src) {
+		let queue = [src];
+		let visited = [];
+		// create a visited array with 0 against all vertices
+		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
+			visited[i] = 0;	
+		}
+		while (queue.length > 0) {
+			let curNode = queue.shift();
+			visited[curNode] = 1;
+			for (let node of this.adjacentList[curNode]) {
+				console.log(`visited ${node} from ${curNode}`)
+				if (visited[node] === 0) {
+					queue.push(node);
+					visited[node] = 1;
+				}
+			}
+		}
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);
@@ -106,6 +126,8 @@ let g = {
 const graph = new Graph(g);
 graph.showConnections();
 graph.depthFirstTraversal(0);
+console.log();
+graph.breadthFirstTraversal(0);
 
 // myGraph.addVertex('0');
 // myGraph.addVertex('1');
