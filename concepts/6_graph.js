@@ -48,6 +48,8 @@ class Graph {
 		}
 	}
 
+	// In the following 2 methods adjacency list graph is created by 
+	// first adding vertices in the graph and then adding connecting nodes
 	addVertex(node) {
 		this.adjacentList[node] = [];
 		this.numberOfNodes++;
@@ -56,6 +58,17 @@ class Graph {
 	addEdge(node1, node2) {
 		this.adjacentList[node1].push(node2);
 		this.adjacentList[node2].push(node1);
+	}
+
+	// In the following method, graph can be build just by edge list
+	buildGraph(edges) {
+		for (let edge of edges) {
+			const [edge1, edge2] = edge;
+			if (!(edge1 in this.adjacentList)) this.adjacentList[edge1] = [];
+			if (!(edge2 in this.adjacentList)) this.adjacentList[edge2] = [];
+			this.adjacentList[edge1].push(edge2);
+			this.adjacentList[edge2].push(edge1);
+		}
 	}
 
 	depthFirstTraversal(src) {
@@ -113,6 +126,7 @@ class Graph {
 	}
 }
 
+// Method 1: Creating Graph
 const myGraph = new Graph();
 let g = {
 	0: [1,2],
@@ -124,27 +138,40 @@ let g = {
 	6: [5],
 }
 const graph = new Graph(g);
-graph.showConnections();
-graph.depthFirstTraversal(0);
-console.log();
-graph.breadthFirstTraversal(0);
+// graph.showConnections();
+// graph.depthFirstTraversal(0);
+// console.log();
+// graph.breadthFirstTraversal(0);
 
-// myGraph.addVertex('0');
-// myGraph.addVertex('1');
-// myGraph.addVertex('2');
-// myGraph.addVertex('3');
-// myGraph.addVertex('4');
-// myGraph.addVertex('5');
-// myGraph.addVertex('6');
-// myGraph.addEdge('3', '1');
-// myGraph.addEdge('3', '4');
-// myGraph.addEdge('4', '2');
-// myGraph.addEdge('4', '5');
-// myGraph.addEdge('1', '2');
-// myGraph.addEdge('1', '0');
-// myGraph.addEdge('0', '2');
-// myGraph.addEdge('6', '5');
+// Method 2: Creating Graph
+
+myGraph.addVertex('0');
+myGraph.addVertex('1');
+myGraph.addVertex('2');
+myGraph.addVertex('3');
+myGraph.addVertex('4');
+myGraph.addVertex('5');
+myGraph.addVertex('6');
+myGraph.addEdge('3', '1');
+myGraph.addEdge('3', '4');
+myGraph.addEdge('4', '2');
+myGraph.addEdge('4', '5');
+myGraph.addEdge('1', '2');
+myGraph.addEdge('1', '0');
+myGraph.addEdge('0', '2');
+myGraph.addEdge('6', '5');
 // myGraph.showConnections();
+
+// Method 3: Creating Graph
+const graphFromEdge = new Graph();
+graphFromEdge.buildGraph([
+	['i', 'j'],
+	['k', 'i'],
+	['m', 'k'],
+	['k', 'l'],
+	['o', 'n'],
+])
+graphFromEdge.showConnections();
 
 // Answer:
 // 0-->1 2
