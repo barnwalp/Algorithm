@@ -111,6 +111,20 @@ class Graph {
 		}
 	}
 
+	hasPath(src, dst, visited) {
+		if (src === dst) return true;
+		if (visited.has(src)) return false;
+
+		visited.add(src);
+
+		for (let neighbor of this.adjacentList[src]) {
+			if (this.hasPath(neighbor, dst, visited) === true) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);
@@ -172,6 +186,7 @@ graphFromEdge.buildGraph([
 	['o', 'n'],
 ])
 graphFromEdge.showConnections();
+console.log(graphFromEdge.hasPath('i', 'o', new Set()));
 
 // Answer:
 // 0-->1 2
