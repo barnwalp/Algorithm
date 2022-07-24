@@ -140,6 +140,7 @@ class Graph {
 	}
 }
 
+module.exports = Graph;
 // Method 1: Creating Graph
 const myGraph = new Graph();
 let g = {
