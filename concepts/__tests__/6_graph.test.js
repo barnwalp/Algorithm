@@ -1,6 +1,7 @@
 const Graph = require('../6_graph');
 
 describe("Graph", () => {
+	// Method 1 - Creating Graph
 	let g = {
 		0: [1,2],
 		1: [3,2,0],
@@ -11,11 +12,43 @@ describe("Graph", () => {
 		6: [5],
 	}
 	const graph = new Graph(g);
-	graph.printGraph();
-	console.log(graph.showConnections());
+	// console.log(graph.showConnections());
+	console.log(graph.depthFirstTraversal(0))
 
-	test("printing graph", () => {
-		console.log('printing from inside test function');
+	// Method 2 - Creating Graph
+	const edgeGraph = new Graph();
+	edgeGraph.buildGraph([
+		['i', 'j'],
+		['k', 'i'],
+		['m', 'k'],
+		['k', 'l'],
+		['o', 'n'],
+	])
+	console.log(edgeGraph.showConnections());
+	
+	const myGraph = new Graph();
+	myGraph.addVertex('0');
+	myGraph.addVertex('1');
+	myGraph.addVertex('2');
+	myGraph.addVertex('3');
+	myGraph.addVertex('4');
+	myGraph.addVertex('5');
+	myGraph.addVertex('6');
+	myGraph.addEdge('3', '1');
+	myGraph.addEdge('3', '4');
+	myGraph.addEdge('4', '2');
+	myGraph.addEdge('4', '5');
+	myGraph.addEdge('1', '2');
+	myGraph.addEdge('1', '0');
+	myGraph.addEdge('0', '2');
+	myGraph.addEdge('6', '5');
+	console.log(myGraph.showConnections());
+
+
+	test("Check path between two vertices", () => {
+		expect(edgeGraph.hasPath('i', 'k', new Set())).toBe(true);
+		expect(edgeGraph.hasPath('o', 'm', new Set())).toBe(false);
+		expect(edgeGraph.hasPath('j', 'm', new Set())).toBe(true);
 	});
 
 	// test("setRule() returns undefined when called without argument", () => {

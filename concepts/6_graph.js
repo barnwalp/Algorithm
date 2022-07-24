@@ -74,6 +74,7 @@ class Graph {
 	depthFirstTraversal(src) {
 		let stack = [src];
 		let visited = [];
+		let result = "";
 		// create a visited array with 0 against all vertices
 		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
 			visited[i] = 0;	
@@ -82,18 +83,20 @@ class Graph {
 			let curNode = stack.pop();
 			visited[curNode] = 1;
 			for (let node of this.adjacentList[curNode]) {
-				console.log(`visited ${node} from ${curNode}`)
+				result += `visited ${node} from ${curNode}\n`
 				if (visited[node] === 0) {
 					stack.push(node);
 					visited[node] = 1;
 				}
 			}
 		}
+		return result;
 	}
 
 	breadthFirstTraversal(src) {
 		let queue = [src];
 		let visited = [];
+		let result = "";
 		// create a visited array with 0 against all vertices
 		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
 			visited[i] = 0;	
@@ -102,13 +105,14 @@ class Graph {
 			let curNode = queue.shift();
 			visited[curNode] = 1;
 			for (let node of this.adjacentList[curNode]) {
-				console.log(`visited ${node} from ${curNode}`)
+				result += `visited ${node} from ${curNode}\n`;
 				if (visited[node] === 0) {
 					queue.push(node);
 					visited[node] = 1;
 				}
 			}
 		}
+		return result;
 	}
 
 	hasPath(src, dst, visited) {
@@ -137,70 +141,9 @@ class Graph {
 				connections += vertex + " ";
 			}
 			result += node + "-->" + connections + "\n";
-			// console.log(node + "-->" + connections);
 		}
 		return result;
-	}
-
-	printGraph() {
-		console.log(this.adjacentList);
 	}
 }
 
 module.exports = Graph;
-// Method 1: Creating Graph
-const myGraph = new Graph();
-let g = {
-	0: [1,2],
-	1: [3,2,1],
-	2: [4,1,5],
-	3: [1,4],
-	4: [3,2,5],
-	5: [4,6],
-	6: [5],
-}
-const graph = new Graph(g);
-// graph.showConnections();
-// graph.depthFirstTraversal(0);
-// console.log();
-// graph.breadthFirstTraversal(0);
-
-// Method 2: Creating Graph
-
-myGraph.addVertex('0');
-myGraph.addVertex('1');
-myGraph.addVertex('2');
-myGraph.addVertex('3');
-myGraph.addVertex('4');
-myGraph.addVertex('5');
-myGraph.addVertex('6');
-myGraph.addEdge('3', '1');
-myGraph.addEdge('3', '4');
-myGraph.addEdge('4', '2');
-myGraph.addEdge('4', '5');
-myGraph.addEdge('1', '2');
-myGraph.addEdge('1', '0');
-myGraph.addEdge('0', '2');
-myGraph.addEdge('6', '5');
-// myGraph.showConnections();
-
-// Method 3: Creating Graph
-const graphFromEdge = new Graph();
-graphFromEdge.buildGraph([
-	['i', 'j'],
-	['k', 'i'],
-	['m', 'k'],
-	['k', 'l'],
-	['o', 'n'],
-])
-// graphFromEdge.showConnections();
-// console.log(graphFromEdge.hasPath('i', 'o', new Set()));
-
-// Answer:
-// 0-->1 2
-// 1-->3 2 0
-// 2-->4 1 0
-// 3-->1 4
-// 4-->3 2 5
-// 5-->4 6
-// 6-->5
