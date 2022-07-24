@@ -128,6 +128,7 @@ class Graph {
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);
+		let result = "";
 		for (let node of allNodes) {
 			let nodeConnections = this.adjacentList[node];
 			let connections = "";
@@ -135,8 +136,14 @@ class Graph {
 			for (vertex of nodeConnections) {
 				connections += vertex + " ";
 			}
-			console.log(node + "-->" + connections);
+			result += node + "-->" + connections + "\n";
+			// console.log(node + "-->" + connections);
 		}
+		return result;
+	}
+
+	printGraph() {
+		console.log(this.adjacentList);
 	}
 }
 
@@ -186,8 +193,8 @@ graphFromEdge.buildGraph([
 	['k', 'l'],
 	['o', 'n'],
 ])
-graphFromEdge.showConnections();
-console.log(graphFromEdge.hasPath('i', 'o', new Set()));
+// graphFromEdge.showConnections();
+// console.log(graphFromEdge.hasPath('i', 'o', new Set()));
 
 // Answer:
 // 0-->1 2
