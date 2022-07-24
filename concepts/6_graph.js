@@ -117,13 +117,14 @@ class Graph {
 
 	hasPath(src, dst, visited) {
 		if (src === dst) return true;
-		if (visited.has(src)) return false;
-
+		// adding the node in visited set
 		visited.add(src);
-
 		for (let neighbor of this.adjacentList[src]) {
-			if (this.hasPath(neighbor, dst, visited) === true) {
-				return true;
+			// check path only if the node is not in visited set
+			if (!visited.has(neighbor)) {
+				if (this.hasPath(neighbor, dst, visited) === true) {
+					return true;
+				}
 			}
 		}
 		return false;
