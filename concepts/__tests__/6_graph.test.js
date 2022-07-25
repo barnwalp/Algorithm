@@ -33,6 +33,11 @@ describe("Graph", () => {
 		expect(edgeGraph.hasPath('j', 'm', new Set())).toBe(true);
 	});
 
+	test("counting connected components", () => {
+		expect(edgeGraph.countConnectedComponent()).toBe(2);
+		expect(graph.countConnectedComponent()).toBe(1);
+	})
+
 	// test("setRule() returns undefined when called without argument", () => {
 	// 	expect(validator.setRule()).toBeUndefined();
 	// });

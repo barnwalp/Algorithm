@@ -85,7 +85,7 @@ class Graph {
 				}
 			}
 		}
-		return result;
+		return [result, visited];
 	}
 
 	breadthFirstTraversal(src, visited) {
@@ -93,25 +93,25 @@ class Graph {
 		let result = "";
 		while (queue.length > 0) {
 			let curNode = queue.shift();
-			visited.add(curNode);
+			visited.add(curNode.toString());
 			for (let node of this.adjacentList[curNode]) {
 				result += `visited ${node} from ${curNode}\n`;
-				if (!visited.has(node)) {
+				if (!visited.has(node.toString())) {
 					queue.push(node);
-					visited.add(node);
+					visited.add(node.toString());
 				}
 			}
 		}
-		return result;
+		return [result, visited];
 	}
 
 	hasPath(src, dst, visited) {
 		if (src === dst) return true;
 		// adding the node in visited set
-		visited.add(src);
+		visited.add(src.toString());
 		for (let neighbor of this.adjacentList[src]) {
 			// check path only if the node is not in visited set
-			if (!visited.has(neighbor)) {
+			if (!visited.has(neighbor.toString())) {
 				if (this.hasPath(neighbor, dst, visited) === true) {
 					return true;
 				}
@@ -121,7 +121,19 @@ class Graph {
 	}
 	
 	countConnectedComponent() {
-
+		let visited = new Set();
+		let count = 0;
+		let result, newSet;
+		const allNodes = Object.keys(this.adjacentList);
+		for (let node of allNodes) {
+			if (!visited.has(node)) {
+				[result, newSet] = this.breadthFirstTraversal(node, visited);
+				// console.log(newSet);
+				visited = new Set([...visited, ...newSet]);
+				count++;
+			}
+		}
+		return count;
 	}
 
 
