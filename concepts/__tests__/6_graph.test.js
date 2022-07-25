@@ -12,8 +12,9 @@ describe("Graph", () => {
 		6: [5],
 	}
 	const graph = new Graph(g);
-	// console.log(graph.showConnections());
-	// console.log(graph.depthFirstTraversal(0))
+	console.log(graph.showConnections());
+	console.log(graph.depthFirstTraversal(0, new Set()));
+	console.log(graph.breadthFirstTraversal(0, new Set()));
 
 	// Method 2 - Creating Graph
 	const edgeGraph = new Graph();

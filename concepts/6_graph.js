@@ -71,44 +71,34 @@ class Graph {
 		}
 	}
 
-	depthFirstTraversal(src) {
+	depthFirstTraversal(src, visited) {
 		let stack = [src];
-		let visited = [];
 		let result = "";
-		// create a visited array with 0 against all vertices
-		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
-			visited[i] = 0;	
-		}
 		while (stack.length > 0) {
 			let curNode = stack.pop();
-			visited[curNode] = 1;
+			visited.add(curNode);
 			for (let node of this.adjacentList[curNode]) {
 				result += `visited ${node} from ${curNode}\n`
-				if (visited[node] === 0) {
+				if (!visited.has(node)) {
 					stack.push(node);
-					visited[node] = 1;
+					visited.add(node);
 				}
 			}
 		}
 		return result;
 	}
 
-	breadthFirstTraversal(src) {
+	breadthFirstTraversal(src, visited) {
 		let queue = [src];
-		let visited = [];
 		let result = "";
-		// create a visited array with 0 against all vertices
-		for (let i=0; i<Object.keys(this.adjacentList).length; i++) {
-			visited[i] = 0;	
-		}
 		while (queue.length > 0) {
 			let curNode = queue.shift();
-			visited[curNode] = 1;
+			visited.add(curNode);
 			for (let node of this.adjacentList[curNode]) {
 				result += `visited ${node} from ${curNode}\n`;
-				if (visited[node] === 0) {
+				if (!visited.has(node)) {
 					queue.push(node);
-					visited[node] = 1;
+					visited.add(node);
 				}
 			}
 		}
@@ -129,6 +119,11 @@ class Graph {
 		}
 		return false;
 	}
+	
+	countConnectedComponent() {
+
+	}
+
 
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
