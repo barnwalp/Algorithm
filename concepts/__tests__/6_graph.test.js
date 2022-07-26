@@ -12,9 +12,9 @@ describe("Graph", () => {
 		6: [5],
 	}
 	const graph = new Graph(g);
-	console.log(graph.showConnections());
-	console.log(graph.depthFirstTraversal(0, new Set()));
-	console.log(graph.breadthFirstTraversal(0, new Set()));
+	// console.log(graph.showConnections());
+	// console.log(graph.depthFirstTraversal(0, new Set()));
+	// console.log(graph.breadthFirstTraversal(0, new Set()));
 
 	// Method 2 - Creating Graph
 	const edgeGraph = new Graph();
@@ -25,7 +25,7 @@ describe("Graph", () => {
 		['k', 'l'],
 		['o', 'n'],
 	])
-	// console.log(edgeGraph.showConnections());
+	console.log(edgeGraph.showConnections());
 	
 	test("Checking path between two vertices", () => {
 		expect(edgeGraph.hasPath('i', 'k', new Set())).toBe(true);
@@ -35,7 +35,12 @@ describe("Graph", () => {
 
 	test("counting connected components", () => {
 		expect(edgeGraph.countConnectedComponent()).toBe(2);
-		expect(graph.countConnectedComponent()).toBe(1);
+		expect(graph.countConnectedComponent()).toBe(7);
+	});
+
+	test('largest components', () => {
+		expect(edgeGraph.largestComponent()).toBe(2);
+		expect(edgeGraph.largestComponent()).toBe(2);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {

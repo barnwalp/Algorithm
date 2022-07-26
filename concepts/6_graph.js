@@ -136,6 +136,31 @@ class Graph {
 		return count;
 	}
 
+	largestComponent() {
+		let visited = new Set();
+		let largest = 0;
+		for(let node in this.adjacentList) {
+			// console.log(node, this.adjacentList[node]);
+			let stack = [node];
+			let curNode;
+			let count = 0;
+			while (stack.length > 0) {
+				curNode = stack.pop();
+				count++;
+				visited.add(curNode.toString());
+				for (let vertex of this.adjacentList[node]) {
+					if (!visited.has(vertex.toString())) {
+						stack.push(vertex);
+						// visited.add(vertex.toString());
+					}
+				}
+			}
+			if (count > largest) {
+				largest = count;
+			}
+		}
+		return largest;
+	}
 
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
