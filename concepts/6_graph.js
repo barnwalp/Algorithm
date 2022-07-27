@@ -188,6 +188,23 @@ class Graph {
 		return size;
 	}
 
+	shortestDistance(node1, node2) {
+		let queue = [[node1, 0]];
+		let curNode;
+		let visited = new Set();
+		while (queue.length > 0) {
+			curNode = queue.shift();
+			visited.add(curNode[0].toString());
+			for (let neighbor of this.adjacentList[curNode[0]]) {
+				if (!visited.has(neighbor)) {
+					queue.push([neighbor, curNode[1]+1]);
+					if(neighbor[0] === node2) return curNode[1]+1;
+				}
+			}
+		}
+		return -1;
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);

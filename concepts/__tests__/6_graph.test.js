@@ -27,6 +27,15 @@ describe("Graph", () => {
 	])
 	// console.log(edgeGraph.showConnections());
 	
+	const distGraph = new Graph();
+	distGraph.buildGraph([
+		['w', 'x'],
+		['x', 'y'],
+		['z', 'y'],
+		['z', 'v'],
+		['w', 'v'],
+	]);
+	
 	test("Checking path between two vertices", () => {
 		expect(edgeGraph.hasPath('i', 'k', new Set())).toBe(true);
 		expect(edgeGraph.hasPath('o', 'm', new Set())).toBe(false);
@@ -40,6 +49,11 @@ describe("Graph", () => {
 	test('largest components', () => {
 		expect(edgeGraph.largestComponent()).toBe(5);
 		expect(edgeGraph.largestComponentR()).toBe(5);
+	});
+
+	test('shortest distance', () => {
+		expect(distGraph.shortestDistance('w', 'z')).toBe(2);
+		expect(edgeGraph.shortestDistance('i', 'm')).toBe(2);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {
