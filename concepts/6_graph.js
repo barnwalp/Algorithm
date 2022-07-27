@@ -148,7 +148,7 @@ class Graph {
 				curNode = stack.pop();
 				count++;
 				visited.add(curNode.toString());
-				for (let vertex of this.adjacentList[node]) {
+				for (let vertex of this.adjacentList[curNode]) {
 					if (!visited.has(vertex.toString())) {
 						stack.push(vertex);
 						// visited.add(vertex.toString());

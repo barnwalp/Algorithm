@@ -35,12 +35,10 @@ describe("Graph", () => {
 
 	test("counting connected components", () => {
 		expect(edgeGraph.countConnectedComponent()).toBe(2);
-		expect(graph.countConnectedComponent()).toBe(7);
 	});
 
 	test('largest components', () => {
-		expect(edgeGraph.largestComponent()).toBe(2);
-		expect(edgeGraph.largestComponent()).toBe(2);
+		expect(edgeGraph.largestComponent()).toBe(5);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {
