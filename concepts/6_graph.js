@@ -63,11 +63,11 @@ class Graph {
 	// In the following method, graph can be build just by edge list
 	buildGraph(edges) {
 		for (let edge of edges) {
-			const [edge1, edge2] = edge;
-			if (!(edge1 in this.adjacentList)) this.adjacentList[edge1] = [];
-			if (!(edge2 in this.adjacentList)) this.adjacentList[edge2] = [];
-			this.adjacentList[edge1].push(edge2);
-			this.adjacentList[edge2].push(edge1);
+			const [node1, node2] = edge;
+			if (!(node1 in this.adjacentList)) this.adjacentList[node1] = [];
+			if (!(node2 in this.adjacentList)) this.adjacentList[node2] = [];
+			this.adjacentList[node1].push(node2);
+			this.adjacentList[node2].push(node1);
 		}
 	}
 
@@ -190,15 +190,14 @@ class Graph {
 
 	shortestDistance(node1, node2) {
 		let queue = [[node1, 0]];
-		let curNode;
 		let visited = new Set();
 		while (queue.length > 0) {
-			curNode = queue.shift();
-			visited.add(curNode[0].toString());
-			for (let neighbor of this.adjacentList[curNode[0]]) {
+			const [curNode, distance] = queue.shift();
+			visited.add(curNode.toString());
+			for (let neighbor of this.adjacentList[curNode]) {
 				if (!visited.has(neighbor)) {
-					queue.push([neighbor, curNode[1]+1]);
-					if(neighbor[0] === node2) return curNode[1]+1;
+					queue.push([neighbor, distance+1]);
+					if(neighbor === node2) return distance+1;
 				}
 			}
 		}
