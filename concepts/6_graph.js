@@ -162,6 +162,32 @@ class Graph {
 		return largest;
 	}
 
+	largestComponentR() {
+		const visited = new Set();
+		let longest = 0;
+		for (let node in this.adjacentList) {
+			const size = this.exploreSize(node, visited);
+			if (size > longest) longest = size;
+		}
+		return longest
+	}
+
+	exploreSize(node, visited) {
+		// if node is visited, that means that it has already been counted
+		// so it must return zero
+		if (visited.has(node)) return 0;
+
+		// if node is not visited
+		visited.add(node);
+
+		// count current node
+		let size = 1;
+		for (let neighbor of this.adjacentList[node]) {
+			size += this.exploreSize(neighbor, visited);
+		}
+		return size;
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);

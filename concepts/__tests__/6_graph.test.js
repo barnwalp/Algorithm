@@ -25,7 +25,7 @@ describe("Graph", () => {
 		['k', 'l'],
 		['o', 'n'],
 	])
-	console.log(edgeGraph.showConnections());
+	// console.log(edgeGraph.showConnections());
 	
 	test("Checking path between two vertices", () => {
 		expect(edgeGraph.hasPath('i', 'k', new Set())).toBe(true);
@@ -39,6 +39,7 @@ describe("Graph", () => {
 
 	test('largest components', () => {
 		expect(edgeGraph.largestComponent()).toBe(5);
+		expect(edgeGraph.largestComponentR()).toBe(5);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {
