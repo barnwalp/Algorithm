@@ -204,6 +204,37 @@ class Graph {
 		return -1;
 	}
 
+	islandCount(grid) {
+		let visited = new Set();
+		let count = 0;
+		for (let r=0; r<grid.length; r++) {
+			for (let c=0; c<grid[r].length; c++) {
+				if (this.findIsland(grid, r, c, visited) === true) {
+					count++;
+				}
+			}
+		}
+		return count;
+	}
+
+	findIsland(grid, r, c, visited) {
+		const rowInBounds = 0 <= r && r < grid.length;
+		const colInBounds = 0 <= c && c < grid[0].length;
+		if (!rowInBounds || !colInBounds) return false;
+
+		if (grid[r][c] === 'W') return false;
+		const pos = r + ',' + c;
+		if (visited.has(pos)) return false;
+		visited.add(pos);
+
+		this.findIsland(grid, r-1, c, visited);
+		this.findIsland(grid, r+1, c, visited);
+		this.findIsland(grid, r, c-1, visited);
+		this.findIsland(grid, r, c+1, visited);
+
+		return true;
+	}
+
 	showConnections() {
 		// Object.keys returns an array of all the keys of an object
 		const allNodes = Object.keys(this.adjacentList);

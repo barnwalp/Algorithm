@@ -35,6 +35,19 @@ describe("Graph", () => {
 		['z', 'v'],
 		['w', 'v'],
 	]);
+
+	//Method 3 - Adjacency Matrix
+	// W represents Water and L represents Land
+	const grid = [
+		['W', 'L', 'W', 'W', 'W'],
+		['W', 'L', 'W', 'W', 'W'],
+		['W', 'W', 'W', 'L', 'W'],
+		['W', 'W', 'L', 'L', 'W'],
+		['L', 'W', 'W', 'L', 'L'],
+		['L', 'L', 'W', 'W', 'W'],
+	];
+	let gridGraph = new Graph();
+	gridGraph.islandCount(grid);
 	
 	test("Checking path between two vertices", () => {
 		expect(edgeGraph.hasPath('i', 'k', new Set())).toBe(true);
@@ -54,6 +67,10 @@ describe("Graph", () => {
 	test('shortest distance', () => {
 		expect(distGraph.shortestDistance('w', 'z')).toBe(2);
 		expect(edgeGraph.shortestDistance('i', 'm')).toBe(2);
+	});
+
+	test('island count', () => {
+		expect(gridGraph.islandCount(grid)).toBe(3);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {
