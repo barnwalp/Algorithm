@@ -71,6 +71,7 @@ describe("Graph", () => {
 
 	test('island count', () => {
 		expect(gridGraph.islandCount(grid)).toBe(3);
+		expect(gridGraph.minimumIsland(grid)).toBe(2);
 	})
 
 	// test("setRule() returns undefined when called without argument", () => {

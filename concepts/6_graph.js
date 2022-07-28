@@ -210,7 +210,7 @@ class Graph {
 		for (let r=0; r<grid.length; r++) {
 			for (let c=0; c<grid[r].length; c++) {
 				// current cell is in an island
-				if (this.findIsland(grid, r, c, visited) === true) {
+				if (this.findIsland(grid, r, c, visited) !== 0) {
 					count++;
 				}
 			}
@@ -219,28 +219,32 @@ class Graph {
 	}
 
 	findIsland(grid, r, c, visited) {
+		let count = 0
 		const rowInBounds = 0 <= r && r < grid.length;
 		const colInBounds = 0 <= c && c < grid[0].length;
-		if (!rowInBounds || !colInBounds) return false;
+		if (!rowInBounds || !colInBounds) return 0;
 		
 		// Do not count the cell if it's water
-		if (grid[r][c] === 'W') return false;
+		if (grid[r][c] === 'W') return 0;
 
 		// since [1,3] and [1,3] will point to different point in memory
 		// it is not advisable to use them as set value
 		const pos = r + ',' + c;
-		if (visited.has(pos)) return false;
+		if (visited.has(pos)) return 0;
 		visited.add(pos);
+		count = 1;
 		
 		// As we are incrementing island count after the first land cell, it is
 		// imperative that all neighboring land must be marked as visited
-		this.findIsland(grid, r-1, c, visited);
-		this.findIsland(grid, r+1, c, visited);
-		this.findIsland(grid, r, c-1, visited);
-		this.findIsland(grid, r, c+1, visited);
+		count += (
+			this.findIsland(grid, r-1, c, visited) +
+			this.findIsland(grid, r+1, c, visited) + 
+			this.findIsland(grid, r, c-1, visited) + 
+			this.findIsland(grid, r, c+1, visited)
+		);
 		
 		// it the current cell is land, then return true to increment count
-		return true;
+		return count;
 	}
 
 	showConnections() {
