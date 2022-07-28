@@ -217,6 +217,22 @@ class Graph {
 		}
 		return count;
 	}
+	
+	minimumIsland(grid) {
+		let visited = new Set();
+		let smallest = Infinity;
+		for (let r=0; r<grid.length; r++) {
+			for (let c=0; c<grid[r].length; c++) {
+				let islandCount = this.findIsland(grid, r, c, visited);
+				// assumming there is atleast one island
+				if ((islandCount !== 0) && (islandCount < smallest)){
+					smallest = islandCount;
+				}
+			}
+		}
+		return smallest;
+	}
+
 
 	findIsland(grid, r, c, visited) {
 		let count = 0
