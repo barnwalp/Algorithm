@@ -63,10 +63,10 @@ class BinarySearchTree {
 		// step 4: remove the lowest node of right sub-tree which have only one right child
 	}
 
-	traverse() {
-		const tree = {value: this.root.value};
-		tree.left = node.left === null ? null : traverse(node.left);
-		tree.right = node.right === null ? null : traverse(node.right);
+	traverse(root) {
+		const tree = {value: root.value};
+		tree.left = root.left === null ? null : this.traverse(root.left);
+		tree.right = root.right === null ? null : this.traverse(root.right);
 		return tree;
 	}
 
@@ -156,3 +156,5 @@ class BinarySearchTree {
 		return list;
 	}
 }
+
+module.exports = BinarySearchTree;
