@@ -15,7 +15,7 @@ class BinarySearchTree {
 		let newNode = new Node(value);
 		if (!this.root) {
 			this.root = newNode;
-			return this.root;
+			// return this.root;
 		}
 		var leader = this.root;
 		while (true) {
@@ -61,6 +61,13 @@ class BinarySearchTree {
 		// step 2: find the lowest value node in right sub-tree
 		// step 3: Replace the node value with lowest node of right sub-tree
 		// step 4: remove the lowest node of right sub-tree which have only one right child
+	}
+
+	traverse() {
+		const tree = {value: this.root.value};
+		tree.left = node.left === null ? null : traverse(node.left);
+		tree.right = node.right === null ? null : traverse(node.right);
+		return tree;
 	}
 
 	breadthFirstSearch() {
@@ -148,35 +155,4 @@ class BinarySearchTree {
 		list.push(node.value);
 		return list;
 	}
-}
-
-const tree = new BinarySearchTree();
-tree.insert(9);
-tree.insert(4);
-tree.insert(6);
-tree.insert(20);
-tree.insert(170);
-tree.insert(15);
-tree.insert(1);
-// tree.remove(15);
-// tree.remove(20);
-// console.log(tree.lookup(170));
-// console.log(tree.lookup(15));
-// console.log(tree.lookup(1));
-// console.log(tree.lookup(4));
-// console.log(tree.lookup(null));
-// console.log(tree.lookup(-3));
-// tree.remove(4);
-// console.log(JSON.stringify(traverse(tree.root)));
-// console.log(tree.breadthFirstSearch());
-// console.log(tree.breadthFirstSearchR([tree.root], []));
-console.log(tree.DFSInOrder());
-console.log(tree.DFSPreOrder());
-console.log(tree.DFSPostOrder());
-
-function traverse(node) {
-  const tree = {value: node.value};
-  tree.left = node.left === null ? null : traverse(node.left);
-  tree.right = node.right === null ? null : traverse(node.right);
-  return tree;
 }
