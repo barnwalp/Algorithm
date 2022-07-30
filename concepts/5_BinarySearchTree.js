@@ -85,9 +85,23 @@ class BinarySearchTree {
 
 	remove(value) {
 		// step 1: traverse to the node which is to be removed
+		let leader = this.lookup(value);
+
 		// step 2: find the lowest value node in right sub-tree
+		let lowestNodeRST = this.findSmallest(leader.right);
+		console.log(lowestNodeRST.value);
 		// step 3: Replace the node value with lowest node of right sub-tree
 		// step 4: remove the lowest node of right sub-tree which have only one right child
+	}
+
+	findSmallest(root) {
+		let lowestNode = root;
+		let leader = root;
+		while (leader.left) {
+			leader = leader.left;
+			lowestNode = leader;
+		}
+		return lowestNode;
 	}
 
 	traverse(root) {
@@ -138,7 +152,7 @@ class BinarySearchTree {
 	// preorder: [root, left, right] [9, 4, 1, 6, 20, 15, 170] 
 	// postorder: [left, right, root] [1, 6, 4, 15, 170, 20, 9]
 
-	DFSInOrder() {
+	DFSInOrdert() {
 		return this.traverseInOrder(this.root, []);
 	}
 
