@@ -11,6 +11,35 @@ class BinarySearchTree {
     this.root = null;
   }
 
+	insertR(root, value) {
+		const newNode = new Node(value);
+		if (!this.root) {
+			this.root = newNode;
+			return this.root;
+		}
+		if (!root) {
+			root = newNode;
+			return root;
+		}
+		if (value < root.value) {
+			console.log('value is less than root value')
+			root.left = this.insertR(root.left, value);
+		}
+		if (value > root.value) {
+			console.log('value is greater than root value')
+			root.right = this.insertR(root.right, value);
+		}
+		return root;
+	}
+
+	constructBST(keys) {
+		for (let key of keys) {
+			// root = this.insertR(root, key);
+			this.insertR(this.root, key);
+		}
+		// return root;
+	}
+
   insert(value) {
 		let newNode = new Node(value);
 		if (!this.root) {
