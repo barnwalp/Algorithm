@@ -22,11 +22,9 @@ class BinarySearchTree {
 			return root;
 		}
 		if (value < root.value) {
-			console.log('value is less than root value')
 			root.left = this.insertR(root.left, value);
 		}
 		if (value > root.value) {
-			console.log('value is greater than root value')
 			root.right = this.insertR(root.right, value);
 		}
 		return root;
