@@ -68,40 +68,81 @@ class BinarySearchTree {
   }
 
   lookup(value) {
+		let parent;
 		if(!this.root) {
 			return false;
 		}
 		let leader = this.root;
+		if (value === this.root.value) {
+			parent = null;
+			return this.root;
+		}
 		// while both leaf node and lookup value is not found
 		while (leader && leader.value != value) {
+			parent = leader;
 			if (value >= leader.value) {
 				leader = leader.right;
 			} else {
 				leader = leader.left;
 			}
 		}
-		return leader ? leader : false;
+		return leader ? [parent, leader] : false;
   }
+
+	removeR(root, value) {
+		// Base case: if tree is empty
+		if (!root) {
+			return root;
+		}
+
+		if (value > root.value) {
+			root.right = this.removeR(root.right, value);
+		} else if (value < root.value) {
+			root.left = this.removeR(root.left, value);
+		} else {
+			if (!root.left && !root.right) {
+				root = null;
+			}
+			if (root.left && !root.right) {
+				root = root.left;
+			}
+			if (!root.left && root.right) {
+
+			}
+		}
+	}
 
 	remove(value) {
 		// step 1: traverse to the node which is to be removed
-		let leader = this.lookup(value);
+		let [parent, leader] = this.lookup(value);
 
 		// step 2: find the lowest value node in right sub-tree
-		let lowestNodeRST = this.findSmallest(leader.right);
-		console.log(lowestNodeRST.value);
-		// step 3: Replace the node value with lowest node of right sub-tree
-		// step 4: remove the lowest node of right sub-tree which have only one right child
+		if (leader.right) {
+			let [parentNode, lowestNodeRST] = this.findSmallest(leader.right);
+			
+			// step 3: Replace the node value with lowest node of right sub-tree
+			leader.value = lowestNodeRST.value;
+		
+			// step 4: remove the lowest node of right sub-tree which have only one right child
+			parentNode.left = null;
+
+			// There is no right sub tree
+		} else {
+			parent = null;
+		}
+		console.log(this.traverse(this.root));
 	}
 
 	findSmallest(root) {
 		let lowestNode = root;
 		let leader = root;
+		let parent;
 		while (leader.left) {
+			parent = leader
 			leader = leader.left;
 			lowestNode = leader;
 		}
-		return lowestNode;
+		return [parent, lowestNode];
 	}
 
 	traverse(root) {
