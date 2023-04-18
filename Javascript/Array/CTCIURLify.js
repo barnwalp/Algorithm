@@ -20,16 +20,16 @@ function urlify(text) {
 		while (url[index] !== ' ' && index > 0) {
 			index -= 1;
 		}
-		console.log(index);
 		if (url[index] === ' ') {
 			url = url.slice(0,index) + "%20" + url.slice(index+1);
 		}
 		index -= 1;
 	}
-	console.log(url);
+	return url
 }
 
-urlify(testCase1);
-urlify(testCase2);
-urlify(testCase3);
-urlify(testCase4);
+console.log(`Program Output --> Correct Response \n`)
+console.log(`${urlify(testCase1)} --> Mila%20Kunis`);
+console.log(`${urlify(testCase2)} --> Megan%20%20Fox`);
+console.log(`${urlify(testCase3)} --> Sir%20Crisopher%20lee`);
+console.log(`${urlify(testCase4)} --> What%20the%20fudge%20?%20`);
