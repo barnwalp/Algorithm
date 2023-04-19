@@ -46,15 +46,34 @@ function checkWithReplacement(first, second) {
 		lp++;
 		rp++;
 	}
-	return noOfDiff > 1 ? false : true;
+	return (noOfDiff > 1) ? false : true;
 }
 
 function checkWithInsertion(first, second) {
-	return false;
+	let lp = 0;
+	let rp = 0;
+	let noOfDiff = 0;
+	let temp='';
+
+	if (first.length < second.length) {
+		temp = first;
+		first = second;
+		second = temp;
+	}
+	while (lp < first.length) {
+		if (first[lp] === second[rp]) {
+			lp++;
+			rp++;
+		} else {
+			noOfDiff++;
+			lp++;
+		}
+	}
+	return (noOfDiff > 1) ? false : true;
 }
 
-// console.log(isOneEditAway(testCase1));
-// console.log(isOneEditAway(testCase2));
+console.log(isOneEditAway(testCase1));
+console.log(isOneEditAway(testCase2));
 console.log(isOneEditAway(testCase3));
-// console.log(isOneEditAway(testCase4));
-// console.log(isOneEditAway(testCase5));
+console.log(isOneEditAway(testCase4));
+console.log(isOneEditAway(testCase5));
