@@ -32,26 +32,22 @@ const testCase3 = [
 console.log(testCase2);
 console.log(testCase3);
 
-function rotateMatrix(ipMatrix) {
-	let matrix = ipMatrix.slice();
-	let layers = Math.ceil(matrix.length/2)	
-	for (let layer = 0; layer <= layers; layer++) {
-		let first = layer;
-		let last = matrix.length-layer-1;
-		for (let i=first; i<=last; i++) {
-			let offset = i - first;
-			// save top
-			let temp = matrix[first][i];
-			// left -> top
-			matrix[first][i] = matrix[last-offset][first]
-			// bottom -> left
-			matrix[last-offset][first] = matrix[last][last-offset]
-			// right -> bottom
-			matrix[last][last-offset] = matrix[i][last]
-			// top -> right
-			matrix[i][last] = temp;
+function rotateMatrix(matrix) {
+	let l = 0;
+	let r = matrix.length-1
+	let temp = 0;
+	while (l < r) {
+		for (i=0; i<r-l; i++){
+			let top = l;
+			let bottom = r;
+			temp = matrix[top][l+i];
+			matrix[top][l+i] = matrix[bottom-i][l];
+			matrix[bottom-i][l] = matrix[bottom][r-i];
+			matrix[bottom][r-i] = matrix[top+i][r];
+			matrix[top+i][r] = temp;
 		}
-
+		l++;
+		r--;
 	}
 	return matrix;
 }
