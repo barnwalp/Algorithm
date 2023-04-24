@@ -42,14 +42,21 @@ function isSubstring([s1, s2]) {
 }
 
 // is s2 a rotation of s1
-function stringRotation(s1, s2) {
-	return false;
+function stringRotation([s1, s2]) {
+	let doubleS1 = s1 + s1;
+	return doubleS1.includes(s2)
 }
 
-// console.log(stringRotation([s1, s2]));
-console.log(isSubstring(testCase1));
-console.log(isSubstring(testCase2));
-console.log(isSubstring(testCase3));
-console.log(isSubstring(testCase4));
-console.log(isSubstring(testCase5));
-console.log(isSubstring(testCase6));
+console.log(stringRotation(testCase1));
+console.log(stringRotation(testCase2));
+console.log(stringRotation(testCase3));
+console.log(stringRotation(testCase4));
+console.log(stringRotation(testCase5));
+console.log(stringRotation(testCase6));
+
+// console.log(testCase1[0].includes(testCase1[1]));
+// console.log(testCase2[0].includes(testCase2[1]));
+// console.log(testCase3[0].includes(testCase3[1]));
+// console.log(testCase4[0].includes(testCase4[1]));
+// console.log(testCase5[0].includes(testCase5[1]));
+// console.log(testCase6[0].includes(testCase6[1]));
