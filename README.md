@@ -41,7 +41,7 @@ function twoSum(nums, target) {
 
 **Solution**:
 
-![001](assets\2023-04-25-000330.jpg)
+![001](assets/2023-04-25-000330.jpg)
 
 ```javascript
 function waterContainer(height) {
