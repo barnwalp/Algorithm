@@ -62,3 +62,54 @@ function waterContainer(height) {
 }
 ```
 
+#### Trapping Rain Water
+
+**Problem:**  Given n non-integers representing an elevation map where width of each bar is 1, compute how much water it can trap after raining.
+
+**Constraint/Assumption:**
+
+1. y-axis not to be considered for trapping water
+2. Array contains only non-negative numbers.
+3. Minimum 1 number is present in the array.
+
+**Solution:**
+
+In order to get the trapped water at index `i`, you have to know the height of left and right bars to get `maxL` and `maxR`, whereas
+
+`maxL` = largest bar in the left side of the index	
+
+`maxR` = largest bar in the right side of the index
+
+and then calculate the trapped water at each index. Although this method results in O(n) time complexity, which is optimal. however in this method, you have to create 3 arrays for each index (`maxL`,` maxR` and `min(maxL, maxR)`). This will result in space complexity of O(n). 
+
+However space complexity of O(1) can be achieved if instead of one pointer, two pointer mechanism is used.
+
+![002](assets/2023-04-25-000333.jpg)
+
+![003](assets/2023-04-25-000334.jpg)
+
+```javascript
+function trapRain(height) {
+	let trappedWater = 0;
+  let area = 0;
+  let pl = 0;
+  let pr = height.length-1;
+  let maxPl = 0;
+ 	let maxPr = 0;
+  while (pl < pr) {
+    if(height[pl] <= height[pr]) {
+      trappedWater = Math.max((maxPl - height[pl]), 0)
+      area += trappedWater;
+      pl++;
+    } else {
+      trappedWater = Math.max((maxPr - height[pr]), 0)
+      area += trappedWater;
+      pr--;
+    }
+  }
+  return area;
+}
+```
+
+
+
