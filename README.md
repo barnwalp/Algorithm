@@ -136,6 +136,66 @@ function trapRain(height) {
 
 **[⬆ back to top](#table-of-contents)**
 
+#### Is Unique
+
+**Problem:** Implement an algorithm to determine if a string has all unique characters. 
+
+**Constraint/Assumption:** 
+
+1. Strings are ASCII strings instead of unicode
+
+**Solution:** 
+
+```javascript
+function isUnique(text) {
+  const charSet = new Set();
+  for (let char of text) {
+    if (charSet.has(char)) {
+      return false;
+    }
+    charSet.add(char);
+  }
+  return true;
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### Rotate Matrix
+
+**Problem:** Given a Matrix of NxN size, write a method to rotate the matrix by 90 degrees 
+
+**Constraint/Assumptions:**
+
+1. Matrix will contain only integer values
+2. no of rows and columns are equal
+
+**Solution:**
+
+![004](assets/2023-04-26-000335.jpg)
+
+```javascript
+function rotateMatrix(matrix) {
+  let l = 0;
+  let r = matrix.length-1 
+  let temp = 0;
+  while (l < r) {
+    for (i=0; i<r-l; i++) {
+      let top = l;
+      let bottom = r;
+      temp = matrix[top][l+i];
+      matrix[top][l+i] = matrix[bottom-i][l];
+      matrix[bottom-i][l] = matrix[bottom][r-i];
+      matrix[bottom][r-i] = matrix[top+i][r];
+      matrix[top+i][r] = temp;
+    }
+    l++;
+    r--;
+  }
+  return matrix;
+}
+```
+
 ### String
 
 
