@@ -1,12 +1,37 @@
 # Javascript Algorithm Questions
 
+░█████╗░██╗░░░░░░██████╗░░█████╗░██████╗░██╗████████╗██╗░░██╗███╗░░░███╗░██████╗
+██╔══██╗██║░░░░░██╔════╝░██╔══██╗██╔══██╗██║╚══██╔══╝██║░░██║████╗░████║██╔════╝
+███████║██║░░░░░██║░░██╗░██║░░██║██████╔╝██║░░░██║░░░███████║██╔████╔██║╚█████╗░
+██╔══██║██║░░░░░██║░░╚██╗██║░░██║██╔══██╗██║░░░██║░░░██╔══██║██║╚██╔╝██║░╚═══██╗
+██║░░██║███████╗╚██████╔╝╚█████╔╝██║░░██║██║░░░██║░░░██║░░██║██║░╚═╝░██║██████╔╝
+╚═╝░░╚═╝╚══════╝░╚═════╝░░╚════╝░╚═╝░░╚═╝╚═╝░░░╚═╝░░░╚═╝░░╚═╝╚═╝░░░░░╚═╝╚═════╝░
+
+
+
+▄▀█ █░░ █▀▀ █▀█ █▀█ █ ▀█▀ █░█ █▀▄▀█ █▀
+█▀█ █▄▄ █▄█ █▄█ █▀▄ █ ░█░ █▀█ █░▀░█ ▄█
+
+
+
+```
+   _____  .__                       .__  __  .__                    
+  /  _  \ |  |    ____   ___________|__|/  |_|  |__   _____   ______
+ /  /_\  \|  |   / ___\ /  _ \_  __ \  \   __\  |  \ /     \ /  ___/
+/    |    \  |__/ /_/  >  <_> )  | \/  ||  | |   Y  \  Y Y  \\___ \ 
+\____|__  /____/\___  / \____/|__|  |__||__| |___|  /__|_|  /____  >
+        \/     /_____/                            \/      \/     \/ 
+```
+
+
+
 ## Table of Contents
 
-1. [Array](#Array)
+1. [Array](#array)
    1. [Two Sum](#two-sum)
-   2. [Water Container](#Water-Container)
-   3. [Trapping Rain Water](#Trapping-Rain-Water)
-2. [String](#String)
+   2. [Water Container](#water-container)
+   3. [Trapping Rain Water](#trapping-rain-water)
+2. [String](#string)
 
 ### Array
 
@@ -38,8 +63,6 @@ function twoSum(nums, target) {
   return null;
 }
 ```
-
-
 
 **[⬆ back to top](#table-of-contents)**
 
@@ -75,6 +98,8 @@ function waterContainer(height) {
   return area;
 }
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 #### Trapping Rain Water
 
@@ -124,6 +149,8 @@ function trapRain(height) {
   return area;
 }
 ```
+
+**[⬆ back to top](#table-of-contents)**
 
 ### String
 
