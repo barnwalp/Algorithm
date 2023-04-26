@@ -263,51 +263,51 @@ Length of the string signifies the type of operation required to make both strin
 
 ```javascript
 function isOneEditAway([first, second]) {
-	if (first.length === second.length) {
-		return checkWithReplacement(first, second);
-	} else if (Math.abs(first.length - second.length) === 1) {
-		return checkWithInsertion(first, second);
-	} else {
-		return false;
-	}
+  if (first.length === second.length) {
+    return checkWithReplacement(first, second);
+  } else if (Math.abs(first.length - second.length) === 1) {
+    return checkWithInsertion(first, second);
+  } else {
+    return false;
+  }
 }
 
 function checkWithReplacement(first, second) {
-	let noOfDiff = 0;
-	let lp = 0;
-	let rp = 0;
+  let noOfDiff = 0;
+  let lp = 0;
+  let rp = 0;
 
-	while (lp < first.length) {
-		if (first[lp] !== second[rp]) {
-			noOfDiff++;
-		}
-		lp++;
-		rp++;
-	}
-	return (noOfDiff > 1) ? false : true;
+  while (lp < first.length) {
+    if (first[lp] !== second[rp]) {
+      noOfDiff++;
+    }
+    lp++;
+    rp++;
+  }
+  return (noOfDiff > 1) ? false : true;
 }
 
 function checkWithInsertion(first, second) {
-	let lp = 0;
-	let rp = 0;
-	let noOfDiff = 0;
-	let temp='';
+  let lp = 0;
+  let rp = 0;
+  let noOfDiff = 0;
+  let temp='';
 
-	if (first.length < second.length) {
-		temp = first;
-		first = second;
-		second = temp;
-	}
-	while (lp < first.length) {
-		if (first[lp] === second[rp]) {
-			lp++;
-			rp++;
-		} else {
-			noOfDiff++;
-			lp++;
-		}
-	}
-	return (noOfDiff > 1) ? false : true;
+  if (first.length < second.length) {
+    temp = first;
+    first = second;
+    second = temp;
+  }
+  while (lp < first.length) {
+    if (first[lp] === second[rp]) {
+      lp++;
+      rp++;
+    } else {
+      noOfDiff++;
+      lp++;
+    }
+  }
+  return (noOfDiff > 1) ? false : true;
 }
 ```
 
@@ -318,54 +318,50 @@ function checkWithInsertion(first, second) {
 **Problem:** Given a string, write a function to check it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards.
 
 **Constraint/Assumption:**
-
 1. palindrome does not need to be limited to just dictionary words
-
 2. spaces should not be considered in a palindrome
-
 3. all the letters to be case insensitive
 
 **Solution:** 
 
 ```javascript
 function permutePalindrome(text) {
-	text = text.toLowerCase();
-	let textHist = {};
-	let length = 0;
-	for (let char of text) {
-		if (char !== ' ') {
-			if (textHist[char] !== undefined){
-				textHist[char] += 1;
-				length ++;
-			} else {
-				textHist[char] = 1;
-				length ++;
-			}
-		}
-	}
-	let noOfOddChar = 0	
-	for (let item in textHist) {
-		if (textHist[item] %2 !== 0) {
-			noOfOddChar += 1
-		}
-	}
+  text = text.toLowerCase();
+  let textHist = {};
+  let length = 0;
+  for (let char of text) {
+    if (char !== ' ') {
+      if (textHist[char] !== undefined){
+        textHist[char] += 1;
+        length ++;
+      } else {
+        textHist[char] = 1;
+        length ++;
+      }
+    }
+  }
+  let noOfOddChar = 0	
+  for (let item in textHist) {
+    if (textHist[item] %2 !== 0) {
+      noOfOddChar += 1
+    }
+  }
 
-	if (length % 2 === 0 ) {
-		if (noOfOddChar === 0) {
-			return true;
-		} else {
-			return false;
-		}
-	} else {
-		if (noOfOddChar === 1) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+  if (length % 2 === 0 ) {
+    if (noOfOddChar === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  } else {
+    if (noOfOddChar === 1) {
+      return true;
+    } else {
+      return false;
+    }
+  }
 }
 ```
-
 **[⬆ back to top](#table-of-contents)**
 
 #### Compress String
@@ -384,19 +380,19 @@ time complexity will depends on the string concatenation operation, which someti
 
 ```javascript
 function compressString(str) {
-	let compressed = '';
-	let ptr = 0;
-	while (ptr < str.length) {
-		let count = 1;
-		while(str[ptr] === str[ptr+1]) {
-			count++;
-			ptr++;
-		}
-		compressed += str[ptr] + String(count);
-		ptr++;
-	}
-	
-	return (compressed.length < str.length) ? compressed : str;
+  let compressed = '';
+  let ptr = 0;
+  while (ptr < str.length) {
+    let count = 1;
+    while(str[ptr] === str[ptr+1]) {
+      count++;
+      ptr++;
+    }
+    compressed += str[ptr] + String(count);
+    ptr++;
+  }
+  
+  return (compressed.length < str.length) ? compressed : str;
 }
 ```
 
@@ -415,18 +411,18 @@ function compressString(str) {
 
 ```javascript
 function urlify(text) {
-	let url = text;
-	let index = url.length-1;
-	while (index > 0) {
-		while (url[index] !== ' ' && index > 0) {
-			index -= 1;
-		}
-		if (url[index] === ' ') {
-			url = url.slice(0,index) + "%20" + url.slice(index+1);
-		}
-		index -= 1;
-	}
-	return url
+  let url = text;
+  let index = url.length-1;
+  while (index > 0) {
+    while (url[index] !== ' ' && index > 0) {
+      index -= 1;
+    }
+    if (url[index] === ' ') {
+      url = url.slice(0,index) + "%20" + url.slice(index+1);
+    }
+    index -= 1;
+  }
+  return url
 }
 ```
 
@@ -446,33 +442,33 @@ permutation of the other.
 
 ```javascript
 function stringPermutation(str1, str2) {
-	if (str1.length !== str2.length) {
-		return false;
-	}
+  if (str1.length !== str2.length) {
+    return false;
+  }
 
-	const strHist = {}
-	for (let char of str1) {
-		if (strHist[char] !== undefined) {
-			strHist[char] += 1;
-		} else {
-			strHist[char] = 1;
-		}
-	}
-	console.log(strHist);
+  const strHist = {}
+  for (let char of str1) {
+    if (strHist[char] !== undefined) {
+      strHist[char] += 1;
+    } else {
+      strHist[char] = 1;
+    }
+  }
+  console.log(strHist);
 
-	for (let char of str2) {
-		if (strHist[char] === undefined) {
-			return false;
-		}
-		strHist[char] -= 1;
-	}
+  for (let char of str2) {
+    if (strHist[char] === undefined) {
+      return false;
+    }
+    strHist[char] -= 1;
+  }
 
-	for (let keys in strHist) {
-		if (strHist[keys] !== 0) {
-			return false
-		}
-		return true;
-	}
+  for (let keys in strHist) {
+    if (strHist[keys] !== 0) {
+      return false
+    }
+    return true;
+  }
 }
 ```
 
@@ -494,31 +490,32 @@ which means that if s2 is a rotation of s1, then s2 will always be a substring o
 ```javascript
 // is s2 a substring of s1
 function isSubstring([s1, s2]) {
-	let p1 = 0;
-	let p2 = 0;
-	while (p1 < s1.length) {
-		let check = true;
-		while (p2 < s2.length) {
-			if (s1[p1] !== s2[p2]) {
-				check = false;
-				p1++;
-				p2++;
-				break;
-			}
-			p1++;
-			p2++;
-		}
-		if (check) return true;
-	}
-	return false;
+  let p1 = 0;
+  let p2 = 0;
+  while (p1 < s1.length) {
+    let check = true;
+    while (p2 < s2.length) {
+      if (s1[p1] !== s2[p2]) {
+        check = false;
+        p1++;
+        p2++;
+        break;
+      }
+      p1++;
+      p2++;
+    }
+    if (check) return true;
+  }
+  return false;
 }
 
 // is s2 a rotation of s1
 function stringRotation([s1, s2]) {
-	if (s1.length !== s2.length) return false;
-	let doubleS1 = s1 + s1;
-	return doubleS1.includes(s2)
+  if (s1.length !== s2.length) return false;
+  let doubleS1 = s1 + s1;
+  return doubleS1.includes(s2)
 }
+
 ```
 
 **[⬆ back to top](#table-of-contents)**
