@@ -15,7 +15,15 @@
    1. [Two Sum](#two-sum)
    2. [Water Container](#water-container)
    3. [Trapping Rain Water](#trapping-rain-water)
+   4. [isUnique](#is-unique)
+   5. [Rotate Matrix](#rotate-matrix)
 2. [String](#string)
+   1. [One Away](#one-away)
+   2. [Palindrome Permutation](#palindrome-permutation)
+   3. [Compress String](#compress-string)
+   4. [URLify](#urlify)
+   5. [String Permutation](#string-permutation)
+   6. [String Rotation](#string-rotation)
 
 ### Array
 
@@ -161,6 +169,43 @@ function isUnique(text) {
 
 **[⬆ back to top](#table-of-contents)**
 
+#### Zero Matrix
+
+**Problem: **Write an algorithm such that if an element in an M x N matrix is 0, its entire row and column are set to 0
+
+**Solution:**
+
+```javascript
+function findingZero(matrix) {
+	let zeroList = [];
+	for (let i=0; i<matrix.length; i++) {
+		for (let j=0; j<matrix.length; j++) {
+			if (matrix[i][j] === 0) {
+				zeroList.push([i,j]);
+			}
+		}
+	}
+	return zeroList;
+}
+
+function makeZero(zeroList, matrix) {
+	for (let arr of zeroList) {
+		let [r, c] = arr;
+		for (let i=0; i<matrix.length; i++) {
+			matrix[r][i] = 0;
+			matrix[i][c] = 0;
+		}
+	}
+	return matrix;
+}
+
+function zeroMatrix(matrix) {
+	return makeZero(findingZero(matrix), matrix);
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
 #### Rotate Matrix
 
 **Problem:** Given a Matrix of NxN size, write a method to rotate the matrix by 90 degrees 
@@ -196,7 +241,284 @@ function rotateMatrix(matrix) {
 }
 ```
 
+**[⬆ back to top](#table-of-contents)**
+
 ### String
 
+#### One Away
 
+**Problem:** There are three types of edit that can be performed on a string: insert a character, remove a character or replace a character. Given two string, write a function to check if they are one edit away.
 
+**Constraint/Assumption:**
+
+1. There is no space in the provided strings
+2. All letters are case sensitive
+3. Insertion, Removal and Replacement can be done at any index.
+
+**Solution:**
+
+This is one of those problem where it is helpful to think about the meaning of each operation. We can consider insertion and removal as same operation, as removal can be thought as reverse of insertion. Furthermore, replacement can be consider as separate than other two.
+
+Length of the string signifies the type of operation required to make both strings equal. If the length of both string is same, only replacement may be required whereas if the difference in length is one then insertion or removal is required. All remaining cases are to be considered as false.
+
+```javascript
+function isOneEditAway([first, second]) {
+	if (first.length === second.length) {
+		return checkWithReplacement(first, second);
+	} else if (Math.abs(first.length - second.length) === 1) {
+		return checkWithInsertion(first, second);
+	} else {
+		return false;
+	}
+}
+
+function checkWithReplacement(first, second) {
+	let noOfDiff = 0;
+	let lp = 0;
+	let rp = 0;
+
+	while (lp < first.length) {
+		if (first[lp] !== second[rp]) {
+			noOfDiff++;
+		}
+		lp++;
+		rp++;
+	}
+	return (noOfDiff > 1) ? false : true;
+}
+
+function checkWithInsertion(first, second) {
+	let lp = 0;
+	let rp = 0;
+	let noOfDiff = 0;
+	let temp='';
+
+	if (first.length < second.length) {
+		temp = first;
+		first = second;
+		second = temp;
+	}
+	while (lp < first.length) {
+		if (first[lp] === second[rp]) {
+			lp++;
+			rp++;
+		} else {
+			noOfDiff++;
+			lp++;
+		}
+	}
+	return (noOfDiff > 1) ? false : true;
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### Palindrome Permutation
+
+**Problem:** Given a string, write a function to check it is a permutation of a palindrome. A palindrome is a word or phrase that is the same forwards and backwards.
+
+**Constraint/Assumption:**
+
+1. palindrome does not need to be limited to just dictionary words
+
+2. spaces should not be considered in a palindrome
+
+3. all the letters to be case insensitive
+
+**Solution:** 
+
+```javascript
+function permutePalindrome(text) {
+	text = text.toLowerCase();
+	let textHist = {};
+	let length = 0;
+	for (let char of text) {
+		if (char !== ' ') {
+			if (textHist[char] !== undefined){
+				textHist[char] += 1;
+				length ++;
+			} else {
+				textHist[char] = 1;
+				length ++;
+			}
+		}
+	}
+	let noOfOddChar = 0	
+	for (let item in textHist) {
+		if (textHist[item] %2 !== 0) {
+			noOfOddChar += 1
+		}
+	}
+
+	if (length % 2 === 0 ) {
+		if (noOfOddChar === 0) {
+			return true;
+		} else {
+			return false;
+		}
+	} else {
+		if (noOfOddChar === 1) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### Compress String
+
+**Problem:** Implement a method to perform basic string compression using the counts of repeated characters. For example, the string "aabcccccaaa" would become "a2b1c5a3". It the compressed string would not become smaller than the original string, your method should return the original string.
+
+**Constraint/Assumption:** 
+
+1. string only has uppercase and lowercase letters (a-z).
+2. string can also have spaces in between.
+
+**Solution:** 
+
+Although the operation happens with O(n) time complexity, the overall
+time complexity will depends on the string concatenation operation, which sometimes run with O(n2) time complexity. it is also advisable to check in advance whether new compressed string is shorter than the actual string so that we don't create a string that is never used.
+
+```javascript
+function compressString(str) {
+	let compressed = '';
+	let ptr = 0;
+	while (ptr < str.length) {
+		let count = 1;
+		while(str[ptr] === str[ptr+1]) {
+			count++;
+			ptr++;
+		}
+		compressed += str[ptr] + String(count);
+		ptr++;
+	}
+	
+	return (compressed.length < str.length) ? compressed : str;
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### URLify
+
+**Problem:**  Write a method to replace all spaces in a string with %20. True length of the string is also provided
+
+**Constraint/Assumption:**
+
+1. string has sufficient space at the end to hold the additional characters.
+2. multiple spaces must not be considered as single space
+
+**Solution:**
+
+```javascript
+function urlify(text) {
+	let url = text;
+	let index = url.length-1;
+	while (index > 0) {
+		while (url[index] !== ' ' && index > 0) {
+			index -= 1;
+		}
+		if (url[index] === ' ') {
+			url = url.slice(0,index) + "%20" + url.slice(index+1);
+		}
+		index -= 1;
+	}
+	return url
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### String Permutation
+
+**Problem: **Given two string, write a method to decide if one is a 
+permutation of the other.
+
+**Constraint/Assumption:**
+
+1. Strings are case sensitive
+2. Whitespace is significant
+
+**Solution:**
+
+```javascript
+function stringPermutation(str1, str2) {
+	if (str1.length !== str2.length) {
+		return false;
+	}
+
+	const strHist = {}
+	for (let char of str1) {
+		if (strHist[char] !== undefined) {
+			strHist[char] += 1;
+		} else {
+			strHist[char] = 1;
+		}
+	}
+	console.log(strHist);
+
+	for (let char of str2) {
+		if (strHist[char] === undefined) {
+			return false;
+		}
+		strHist[char] -= 1;
+	}
+
+	for (let keys in strHist) {
+		if (strHist[keys] !== 0) {
+			return false
+		}
+		return true;
+	}
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### String Rotation
+
+**Problem:** Assume you have a method `isSubstring` which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to `isSubstring`.
+**Solution:** 
+s1 = 'waterbottle'
+s2 = 'erbottlewat'   // is a rotation of s1
+x = 'wat'
+y = 'erbottle'
+s2 = yx
+s1 = xy
+s1s1 = 'wat{erbottlewat}erbottle'  // here one can find s2
+which means that if s2 is a rotation of s1, then s2 will always be a substring of s1s1
+
+```javascript
+// is s2 a substring of s1
+function isSubstring([s1, s2]) {
+	let p1 = 0;
+	let p2 = 0;
+	while (p1 < s1.length) {
+		let check = true;
+		while (p2 < s2.length) {
+			if (s1[p1] !== s2[p2]) {
+				check = false;
+				p1++;
+				p2++;
+				break;
+			}
+			p1++;
+			p2++;
+		}
+		if (check) return true;
+	}
+	return false;
+}
+
+// is s2 a rotation of s1
+function stringRotation([s1, s2]) {
+	if (s1.length !== s2.length) return false;
+	let doubleS1 = s1 + s1;
+	return doubleS1.includes(s2)
+}
+```
+
+**[⬆ back to top](#table-of-contents)**
