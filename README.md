@@ -1,4 +1,14 @@
-## Javascript Algorithm Questions
+# Javascript Algorithm Questions
+
+## Table of Contents
+
+1. [Array](#Array)
+   1. [Two Sum](#two-sum)
+   2. [Water Container](#Water-Container)
+   3. [Trapping Rain Water](#Trapping-Rain-Water)
+2. [String](#String)
+
+### Array
 
 #### Two Sum
 
@@ -28,6 +38,10 @@ function twoSum(nums, target) {
   return null;
 }
 ```
+
+
+
+**[⬆ back to top](#table-of-contents)**
 
 #### Water Container
 
@@ -110,6 +124,8 @@ function trapRain(height) {
   return area;
 }
 ```
+
+### String
 
 
 
