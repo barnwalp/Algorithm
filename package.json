@@ -1,0 +1,22 @@
+{
+  "name": "algorithm",
+  "version": "1.0.0",
+  "description": "javascript algorithm",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barnwalp/Algorithm.git"
+  },
+  "author": "Pankaj Barnwal",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/barnwalp/Algorithm/issues"
+  },
+  "homepage": "https://github.com/barnwalp/Algorithm#readme",
+  "dependencies": {
+    "jest": "^29.5.0"
+  }
+}

@@ -121,12 +121,12 @@ However space complexity of O(1) can be achieved if instead of one pointer, two 
 
 ```javascript
 function trapRain(height) {
-	let trappedWater = 0;
+  let trappedWater = 0;
   let area = 0;
   let pl = 0;
   let pr = height.length-1;
   let maxPl = 0;
- 	let maxPr = 0;
+  let maxPr = 0;
   while (pl < pr) {
     if(height[pl] <= height[pr]) {
       trappedWater = Math.max((maxPl - height[pl]), 0)
@@ -171,7 +171,7 @@ function isUnique(text) {
 
 #### Zero Matrix
 
-**Problem: **Write an algorithm such that if an element in an M x N matrix is 0, its entire row and column are set to 0
+**Problem:** Write an algorithm such that if an element in an M x N matrix is 0, its entire row and column are set to 0
 
 **Solution:**
 
@@ -430,7 +430,7 @@ function urlify(text) {
 
 #### String Permutation
 
-**Problem: **Given two string, write a method to decide if one is a 
+**Problem:** Given two string, write a method to decide if one is a 
 permutation of the other.
 
 **Constraint/Assumption:**

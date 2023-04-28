@@ -61,7 +61,7 @@ class BinarySearchTree {
 				}
 				leader = leader.left;
 			} else if (value === leader.value) {
-				console.log('duplicate values are not permitted');
+				// console.log('duplicate values are not permitted');
 				return undefined;
 			}
 		}
@@ -130,7 +130,7 @@ class BinarySearchTree {
 		} else {
 			parent = null;
 		}
-		console.log(this.traverse(this.root));
+		// console.log(this.traverse(this.root));
 	}
 
 	findSmallest(root) {
