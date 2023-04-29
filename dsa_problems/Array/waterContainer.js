@@ -1,8 +1,3 @@
-const testCase1 = [0,0]                 //0
-const testCase2 = [3,4]                 //3
-const testCase3 = [1,2,3,6,4,7]         //12
-const testCase4 = [1,8,6,2,5,4,8,3,7]   //49
-
 const maxAreaBf = function(height) {
   area=0;
   for(p1=0; p1<height.length; p1++) {
