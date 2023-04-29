@@ -1,7 +1,6 @@
 const { twoSum } = require('../twoSum');
 
 describe('Two Sum', () => {
-	console.log(twoSum([1,2,7,9,2], 11));
 	it('should handle empty arrays', () => {
 		expect(twoSum([], 1)).toBe(null);
 	});
