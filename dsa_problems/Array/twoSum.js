@@ -42,7 +42,7 @@ const twoSumBf2 = function(nums, target) {
   return null;
 };
 
-const twoSumOptimized = function(nums, target) {
+function twoSumOptimized(nums, target) {
   const hashMap = {}
   for(let p=0; p<nums.length; p++) {
     value = nums[p];
@@ -57,7 +57,11 @@ const twoSumOptimized = function(nums, target) {
   return null;
 };
 
+module.exports = {
+	twoSum: twoSumOptimized,
+}
+
 // console.log(twoSumBf1([5,4,3,2,1], 9));
 // console.log(twoSumBf2([1,3,6,5], 9));
 // console.log(twoSumOptimized([1,3,7,9,2], 11));
-console.log(twoSumOptimized([3,3,2,5], 6));
+// console.log(twoSumOptimized([3,3,2,5], 6));
