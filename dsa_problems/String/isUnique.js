@@ -1,13 +1,3 @@
-// Problem:
-// Implement an algorithm to determine if a string has all unique characters. 
-// what if you cannot use additional data structures
-//
-
-// Constraints:
-// 1. strings are ASCII strings not the unicode strings
-
-
-// Test Cases:
 const testCase1 = 'computer science'		// no
 const testCase2 = 'programming'					// no
 const testCase3 = '23423!5%'						// no
@@ -24,6 +14,10 @@ function isUnique(text) {
 		charSet.add(char);	
 	}
 	return true;
+}
+
+module.exports = {
+	isUnique,
 }
 
 console.log(`TestCase 1 ${(!isUnique(testCase1))? 'passed' : 'failed'}`);
