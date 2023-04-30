@@ -1,9 +1,3 @@
-const testCase1 = ['pale', 'ple'];
-const testCase2 = ['lol', 'pale'];
-const testCase3 = ['pale', 'bale'];
-const testCase4 = ['pale', 'bae'];
-const testCase5 = ['catnip', 'catinip']
-
 function isOneEditAway([first, second]) {
 	if (first.length === second.length) {
 		return checkWithReplacement(first, second);
