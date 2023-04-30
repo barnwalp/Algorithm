@@ -478,6 +478,8 @@ function stringPermutation(str1, str2) {
 
 **Problem:** Assume you have a method `isSubstring` which checks if one word is a substring of another. Given two strings, s1 and s2, write code to check if s2 is a rotation of s1 using only one call to `isSubstring`.
 **Solution:** 
+
+```javascript
 s1 = 'waterbottle'
 s2 = 'erbottlewat'   // is a rotation of s1
 x = 'wat'
@@ -485,6 +487,9 @@ y = 'erbottle'
 s2 = yx
 s1 = xy
 s1s1 = 'wat{erbottlewat}erbottle'  // here one can find s2
+```
+
+
 which means that if s2 is a rotation of s1, then s2 will always be a substring of s1s1
 
 ```javascript
@@ -517,5 +522,72 @@ function stringRotation([s1, s2]) {
 }
 
 ```
+
+**[⬆ back to top](#table-of-contents)**
+
+#### Compare String
+
+**Problem:** Given two strings `s` and `t`, return true if they are equal when both are typed into empty text editors. Here, empty text editor just employ backspace whenever it encounters '#' 
+
+**Constraint/Assumptions:**
+
+1. 1 <= `s.length`, `t.length` <=200
+
+2. s and t have both lowercase letters and '#' characters
+
+**Solution:**
+
+```javascript
+const compareStringOptimized = function(s, t) {
+  let p1=s.length-1, p2=t.length-1;
+  while (p1>=0 || p2>=0) {
+    if (s[p1] != '#' && t[p2] != '#') {
+      if (s[p1] != t[p2]) {
+        return false;
+      }
+      p1--;
+      p2--;
+    }
+    if (s[p1] == '#') {
+      let count=0;
+      while (s[p1] == '#') {
+        count++;
+        p1--;
+      }
+      while (count>0) {
+        if(s[p1] != '#') {
+          p1--;
+          count--;
+        }
+        else {
+          p1--;
+          count++;
+        }
+      }
+    }
+    if (t[p2] == '#') {
+      let count=0;
+      while (t[p2] == '#') {
+        count++;
+        count++;
+        p2--;
+      }
+      while (count>0) {
+        if(t[p2] != '#') {
+          p2--;
+          count--;
+        }
+        else {
+          p2--;
+          count++;
+        }
+      }
+    }
+  }
+  return true;
+}
+```
+
+
 
 **[⬆ back to top](#table-of-contents)**
