@@ -24,6 +24,7 @@
    4. [URLify](#urlify)
    5. [String Permutation](#string-permutation)
    6. [String Rotation](#string-rotation)
+   7. [Compare String](#compare-string)
 
 ### Array
 
@@ -587,7 +588,5 @@ const compareStringOptimized = function(s, t) {
   return true;
 }
 ```
-
-
 
 **[⬆ back to top](#table-of-contents)**
